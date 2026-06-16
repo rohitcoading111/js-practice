@@ -1,18 +1,37 @@
 const input = document.querySelector("input")
 const btn = document.querySelector("button")
-const task = document.querySelector(".showtask")
+const showtask = document.querySelector(".showtask")
 
 
 
 btn.addEventListener("click", function(){
-    let h1 = document.createElement("h1")
-    h1.innerText = input.value
-    if (h1.innerText.trim()=="") {
+    let task = document.createElement("div")
+    let p = document.createElement('h1')
+    let del = document.createElement("button")
+    let edit = document.createElement("button")
+    p.innerText = input.value
+
+
+    if (p.innerText.trim()=="") {
         return;
     }
     else{
-        task.append(h1)
+        task.append(p)
+        showtask.append(task)
     }
     input.value = ""
-})
 
+    task.append(del,edit);
+
+    del.innerText = "delete"
+    edit.innerText = "edit"
+
+    del.addEventListener("click",function(){
+        task.remove()
+    })
+    edit.addEventListener("click", () => {
+    input.value = p.innerText;
+    task.remove()
+});
+
+})

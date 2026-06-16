@@ -21,10 +21,10 @@ body {
 
 .top input {
   width: 300px;
-  padding: 10px;
+  padding: 12px;
   font-size: 16px;
-  border: 2px solid #ccc;
-  border-radius: 6px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
   outline: none;
 }
 
@@ -33,31 +33,62 @@ body {
 }
 
 .top button {
-  padding: 10px 20px;
-  font-size: 16px;
+  padding: 12px 18px;
   border: none;
+  border-radius: 8px;
   background: #4a90e2;
   color: white;
-  border-radius: 6px;
   cursor: pointer;
+  transition: 0.3s;
 }
 
 .top button:hover {
-  opacity: 0.9;
+  background: #357abd;
 }
 
 .showtask {
-  width: 380px;
+  width: 450px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
+}
+
+/* Har task ka container */
+.showtask div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  padding: 12px 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .showtask h1 {
   font-size: 18px;
-  background: white;
-  padding: 12px;
+  margin: 0;
+  flex: 1;
+}
+
+.showtask button {
+  padding: 8px 12px;
+  margin-left: 8px;
+  border: none;
   border-radius: 6px;
-  border-left: 5px solid #4a90e2;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.showtask button:nth-of-type(1) {
+  background: #e53935;
+}
+
+.showtask button:nth-of-type(2) {
+  background: #43a047;
+}
+
+.showtask button:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
 }
