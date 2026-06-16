@@ -87,8 +87,14 @@ body {
 .showtask button:nth-of-type(2) {
   background: #43a047;
 }
-
+.showtask button:nth-of-type(3) {
+  background: #034707;
+}
 .showtask button:hover {
   transform: scale(1.05);
   opacity: 0.9;
+}
+.completed {
+    text-decoration: line-through;
+    color: gray;
 }

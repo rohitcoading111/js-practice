@@ -9,6 +9,7 @@ btn.addEventListener("click", function(){
     let p = document.createElement('h1')
     let del = document.createElement("button")
     let edit = document.createElement("button")
+    let complete = document.createElement("button")
     p.innerText = input.value
 
 
@@ -21,10 +22,11 @@ btn.addEventListener("click", function(){
     }
     input.value = ""
 
-    task.append(del,edit);
+    task.append(del,edit,complete);
 
     del.innerText = "delete"
     edit.innerText = "edit"
+    complete.innerText = "completed"
 
     del.addEventListener("click",function(){
         task.remove()
@@ -32,6 +34,11 @@ btn.addEventListener("click", function(){
     edit.addEventListener("click", () => {
     input.value = p.innerText;
     task.remove()
-});
+    });
 
-})
+    complete.addEventListener("click",function(){
+         p.classList.toggle("completed")
+    })
+
+
+}) 
