@@ -5,10 +5,7 @@ const taskcontainer = document.querySelector(".taskcontainer")
 const themebtn = document.querySelector("#themebtn")
 const body = document.querySelector("body")
 
-let tasks = [];
-
-let task = JSON.stringify(tasks);
-
+let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
 
 
@@ -41,23 +38,25 @@ taskcontainer.addEventListener("click",(e)=>{
          clickedH3.classList.toggle("complete")
          clickedTask.classList.toggle("completed")
          console.log(tasks);
+
+         
     }
+
+    
+         
+    localStorage.setItem("tasks",JSON.stringify(tasks))
 
 
   })
 
-addbtn.addEventListener("click",function(){
-  if(taskinp.value.trim()==="" || category.value.trim()===""){
-    return;
-   }
-
-
-   let taskdiv =  document.createElement("div");
+     
+function createtask(taskobj){
+  let taskdiv =  document.createElement("div");
    let h3 = document.createElement("h3")
    let p =  document.createElement("p")
 
-   h3.innerText = taskinp.value
-   p.innerText = category.value
+   h3.innerText = taskobj.title
+   p.innerText = taskobj.category
    taskdiv.classList.add("task")
    taskdiv.append(h3,p)
    taskcontainer.append(taskdiv)
@@ -88,15 +87,24 @@ addbtn.addEventListener("click",function(){
    
 
 
-   let taskobj = {
-    id:Date.now(),
-    title : h3.innerText,
-    category : p.innerText,
-    completee : completee,
+  taskdiv.dataset.id = taskobj.id;
+  
+  }
+
+addbtn.addEventListener("click",function(){
+  if(taskinp.value.trim()==="" || category.value.trim()===""){
+    return;
    }
 
-  tasks.push(taskobj)
-  taskdiv.dataset.id = taskobj.id;
+   let taskobj = {
+    id:Date.now(),
+    title : taskinp.value,
+    category : category.value,
+    completed : false,
+   }
+  tasks.push(taskobj);
+   localStorage.setItem("tasks",JSON.stringify(tasks))
+  createtask(taskobj)
 
 })
 
@@ -110,4 +118,7 @@ themebtn.addEventListener("click",()=>{
     }
 })
 
+  tasks.forEach((item) => {
+    createtask(item);
+});
 
