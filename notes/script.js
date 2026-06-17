@@ -8,16 +8,24 @@ const body = document.querySelector("body")
 let tasks = [];
 console.log(tasks);
 
+
 taskcontainer.addEventListener("click",(e)=>{
 
     const clickedTask = e.target.parentElement.parentElement;
     const clickedH3 = clickedTask.querySelector("h3");
     const clickedP = clickedTask.querySelector("p");
 
+    const id = Number(clickedTask.dataset.id);
 
     if (e.target.classList.contains("delete-btn")) {
         e.target.parentElement.parentElement.remove();
     }
+    
+    const index = tasks.findIndex((item) => {
+    return item.id === id ;
+   });
+    tasks.splice(index,1)
+    console.log(tasks);
        if (e.target.classList.contains("edit-btn")) {
          taskinp.value = clickedH3.innerText
          category.value = clickedP.innerText
@@ -27,6 +35,8 @@ taskcontainer.addEventListener("click",(e)=>{
          clickedH3.classList.toggle("completed")
          clickedTask.classList.toggle("complete")
     }
+
+
   })
 
 addbtn.addEventListener("click",function(){
@@ -79,6 +89,7 @@ addbtn.addEventListener("click",function(){
    }
 
   tasks.push(taskobj)
+  taskdiv.dataset.id = taskobj.id;
 
 })
 
