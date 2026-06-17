@@ -16,24 +16,26 @@ taskcontainer.addEventListener("click",(e)=>{
     const clickedP = clickedTask.querySelector("p");
 
     const id = Number(clickedTask.dataset.id);
-
-    if (e.target.classList.contains("delete-btn")) {
-        e.target.parentElement.parentElement.remove();
-    }
-    
-    const index = tasks.findIndex((item) => {
+     const index = tasks.findIndex((item) => {
     return item.id === id ;
    });
-    tasks.splice(index,1)
-    console.log(tasks);
+
+    if (e.target.classList.contains("delete-btn")) {
+        tasks.splice(index,1)
+        e.target.parentElement.parentElement.remove();
+    }
+
        if (e.target.classList.contains("edit-btn")) {
          taskinp.value = clickedH3.innerText
          category.value = clickedP.innerText
+         tasks.splice(index,1)
+         console.log(tasks);
          clickedTask.remove()
     }
+
        if (e.target.classList.contains("complete-btn")) {
          clickedH3.classList.toggle("completed")
-         clickedTask.classList.toggle("complete")
+         clickedTask.classList.toggle("completed")
     }
 
 
