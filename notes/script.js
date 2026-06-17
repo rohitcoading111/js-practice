@@ -6,7 +6,10 @@ const themebtn = document.querySelector("#themebtn")
 const body = document.querySelector("body")
 
 let tasks = [];
-console.log(tasks);
+
+let task = JSON.stringify(tasks);
+
+
 
 
 taskcontainer.addEventListener("click",(e)=>{
@@ -34,8 +37,10 @@ taskcontainer.addEventListener("click",(e)=>{
     }
 
        if (e.target.classList.contains("complete-btn")) {
-         clickedH3.classList.toggle("completed")
+        tasks[index].completee = !tasks[index].completee
+         clickedH3.classList.toggle("complete")
          clickedTask.classList.toggle("completed")
+         console.log(tasks);
     }
 
 
