@@ -8,6 +8,26 @@ const body = document.querySelector("body")
 let tasks = [];
 console.log(tasks);
 
+taskcontainer.addEventListener("click",(e)=>{
+
+    const clickedTask = e.target.parentElement.parentElement;
+    const clickedH3 = clickedTask.querySelector("h3");
+    const clickedP = clickedTask.querySelector("p");
+
+
+    if (e.target.classList.contains("delete-btn")) {
+        e.target.parentElement.parentElement.remove();
+    }
+       if (e.target.classList.contains("edit-btn")) {
+         taskinp.value = clickedH3.innerText
+         category.value = clickedP.innerText
+         clickedTask.remove()
+    }
+       if (e.target.classList.contains("complete-btn")) {
+         clickedH3.classList.toggle("completed")
+         clickedTask.classList.toggle("complete")
+    }
+  })
 
 addbtn.addEventListener("click",function(){
   if(taskinp.value.trim()==="" || category.value.trim()===""){
