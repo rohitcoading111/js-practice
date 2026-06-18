@@ -4,9 +4,31 @@ const taskinp = document.querySelector("#taskinp")
 const taskcontainer = document.querySelector(".taskcontainer")
 const themebtn = document.querySelector("#themebtn")
 const body = document.querySelector("body")
+const searchInp = document.querySelector("#searchinp")
+
+
+let savedtheme = localStorage.getItem("theme")
+if(savedtheme === "dark"){
+   body.classList.add("dark")
+   themebtn.innerText = "☀️ Light";
+}
+
 
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
+
+searchInp.addEventListener("input",function(){
+   let text = searchInp.value.toLowerCase();
+   let filtered = tasks.filter((item) => {
+    return item.title.toLowerCase().includes(text)
+    });
+    taskcontainer.innerHTML = "";
+
+   filtered.forEach((e)=>{
+     createtask(e)
+   })
+   
+  });
 
 
 taskcontainer.addEventListener("click",(e)=>{
@@ -111,11 +133,15 @@ addbtn.addEventListener("click",function(){
 themebtn.addEventListener("click",()=>{
     body.classList.toggle("dark")
     if(body.classList.contains("dark")){
+      localStorage.setItem("theme", "dark");
        themebtn.innerText = "☀️ Light";
     }
     else {
         themebtn.innerText = "🌙 Dark";
+         localStorage.setItem("theme", "light");
     }
+
+   
 })
 
   tasks.forEach((item) => {
