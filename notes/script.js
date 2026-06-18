@@ -5,6 +5,7 @@ const taskcontainer = document.querySelector(".taskcontainer")
 const themebtn = document.querySelector("#themebtn")
 const body = document.querySelector("body")
 const searchInp = document.querySelector("#searchinp")
+const categorysearch = document.querySelector("#categorysearch")
 
 
 let savedtheme = localStorage.getItem("theme")
@@ -29,6 +30,27 @@ searchInp.addEventListener("input",function(){
    })
    
   });
+
+categorysearch.addEventListener("change",function(){
+  let searchcategory = categorysearch.value.toLowerCase();
+  
+  if(searchcategory === ""){
+    taskcontainer.innerHTML = "";
+      tasks.forEach((items)=>{
+        createtask(items);
+      })
+    return;
+  }
+      
+  let filtered = tasks.filter((e) =>{
+    return e.category.toLowerCase().includes(searchcategory)
+  })
+  taskcontainer.innerHTML = "";
+  filtered.forEach((e)=>{
+     createtask(e);
+  })
+
+});
 
 
 taskcontainer.addEventListener("click",(e)=>{

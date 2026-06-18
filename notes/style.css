@@ -188,3 +188,28 @@ body.dark .task {
 .dark #searchinp::placeholder {
     color: #bbb;
 }
+#categorysearch {
+    width: 30%;
+    max-width: 350px;
+    padding: 12px 15px;
+    margin-top: 15px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
+    outline: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+#categorysearch:focus {
+    border-color: #4a90e2;
+    box-shadow: 0 0 8px rgba(74, 144, 226, 0.3);
+}
+
+.dark #categorysearch {
+    background: #2b2b2b;
+    color: white;
+    border-color: #555;
+}
