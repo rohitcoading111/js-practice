@@ -146,8 +146,8 @@ function createtask(taskobj){
   taskdiv.dataset.id = taskobj.id;
 
   if (taskobj.completed) {
-    h3.classList.add("completed");
-    taskdiv.classList.add("complete");
+    h3.classList.add("complete");
+    taskdiv.classList.add("completed");
 }
 
   }
