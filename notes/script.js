@@ -6,6 +6,9 @@ const themebtn = document.querySelector("#themebtn")
 const body = document.querySelector("body")
 const searchInp = document.querySelector("#searchinp")
 const categorysearch = document.querySelector("#categorysearch")
+const total = document.querySelector("#total");
+const completed = document.querySelector("#completed");
+const pending = document.querySelector("#pending");
 
 
 let savedtheme = localStorage.getItem("theme")
@@ -13,7 +16,6 @@ if(savedtheme === "dark"){
    body.classList.add("dark")
    themebtn.innerText = "☀️ Light";
 }
-
 
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
@@ -52,6 +54,20 @@ categorysearch.addEventListener("change",function(){
 
 });
 
+function updatetaskcounter(){
+  let totalcount = tasks.length;
+  let completedcounts = tasks.filter((e)=>{
+     return e.completed === true;
+  })
+  let completedcount = completedcounts.length;
+  let pendingcount = totalcount - completedcount;
+
+  total.innerText = `total :${totalcount}`;
+  completed.innerText = `completed : ${completedcount}`;
+  pending.innerText = `pending : ${pendingcount}`;
+}
+
+
 
 taskcontainer.addEventListener("click",(e)=>{
 
@@ -73,23 +89,20 @@ taskcontainer.addEventListener("click",(e)=>{
          taskinp.value = clickedH3.innerText
          category.value = clickedP.innerText
          tasks.splice(index,1)
-         console.log(tasks);
          clickedTask.remove()
     }
 
        if (e.target.classList.contains("complete-btn")) {
-        tasks[index].completee = !tasks[index].completee
+        tasks[index].completed = !tasks[index].completed;
          clickedH3.classList.toggle("complete")
          clickedTask.classList.toggle("completed")
          console.log(tasks);
 
          
-    }
-
-    
-         
+    }  
     localStorage.setItem("tasks",JSON.stringify(tasks))
-
+  
+    updatetaskcounter()
 
   })
 
@@ -125,14 +138,18 @@ function createtask(taskobj){
    taskdiv.append(actiondiv)
 
    complete.classList.add( "complete-btn")
-   let completee = false;
    del.classList.add("delete-btn")
    edit.classList.add( "edit-btn")
    
 
 
   taskdiv.dataset.id = taskobj.id;
-  
+
+  if (taskobj.completed) {
+    h3.classList.add("completed");
+    taskdiv.classList.add("complete");
+}
+
   }
 
 addbtn.addEventListener("click",function(){
@@ -149,6 +166,7 @@ addbtn.addEventListener("click",function(){
   tasks.push(taskobj);
    localStorage.setItem("tasks",JSON.stringify(tasks))
   createtask(taskobj)
+  updatetaskcounter()
 
 })
 
@@ -162,11 +180,11 @@ themebtn.addEventListener("click",()=>{
         themebtn.innerText = "🌙 Dark";
          localStorage.setItem("theme", "light");
     }
-
+ 
    
 })
 
   tasks.forEach((item) => {
     createtask(item);
 });
-
+updatetaskcounter();
