@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slack Sign In</title>
+
+  <link rel="stylesheet" href="signin.css">
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+    rel="stylesheet"
+  />
+</head>
+<body>
+
+  <div class="top-right">
+    <span>New to Slack?</span>
+    <a href="#">Create an account</a>
+  </div>
+
+  <div class="container">
+
+    <img
+      class="logo"
+      src="https://slack.com/marketing/img/nav/slack-salesforce-logo-nav-black.png"
+      alt=""
+    >
+
+    <h1>Enter your email to sign in</h1>
+
+    <p class="subtitle">
+      Or choose another way to sign in.
+    </p>
+
+    <form id="loginForm">
+
+      <input
+        type="email"
+        id="email"
+        placeholder="name@work-email.com"
+      >
+
+      <button type="submit">
+        Sign In With Email
+      </button>
+
+    </form>
+
+    <div class="or">
+      <span></span>
+      <p>OR SIGN IN WITH</p>
+      <span></span>
+    </div>
+
+    <div class="social">
+
+      <button class="google">
+        <i class="ri-google-fill"></i>
+        Google
+      </button>
+
+      <button class="apple">
+        <i class="ri-apple-fill"></i>
+        Apple
+      </button>
+
+    </div>
+
+    <p class="help">
+      Having trouble?
+      <a href="#">Try entering a workspace URL</a>
+    </p>
+
+  </div>
+
+  <footer>
+    <a href="#">Privacy & Terms</a>
+    <a href="#">Contact Us</a>
+    <a href="#"><i class="ri-global-line"></i> Change region</a>
+  </footer>
+
+  <script src="signin.js"></script>
+
+</body>
+</html>
