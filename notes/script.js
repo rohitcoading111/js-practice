@@ -188,3 +188,114 @@ themebtn.addEventListener("click",()=>{
     createtask(item);
 });
 updatetaskcounter();
+
+
+const outer = document.querySelector("#outer");
+const middle = document.querySelector("#middle");
+const innerBtn = document.querySelector("#innerBtn");
+const log = document.querySelector("#log");
+
+function addLog(text) {
+  log.innerHTML += `<br>${text}`;
+}
+
+outer.addEventListener(
+  "click",
+  () => addLog("🟢 Capturing: OUTER"),
+  true
+);
+
+middle.addEventListener(
+  "click",
+  () => addLog("🟢 Capturing: MIDDLE"),
+  true
+);
+
+innerBtn.addEventListener(
+  "click",
+  () => addLog("🟢 Capturing: BUTTON"),
+  true
+);
+
+outer.addEventListener("click", () => {
+  addLog("🔵 Bubbling: OUTER");
+});
+
+middle.addEventListener("click", () => {
+  addLog("🔵 Bubbling: MIDDLE");
+});
+
+innerBtn.addEventListener("click", () => {
+  log.innerHTML = "";
+  addLog("🔵 Bubbling: BUTTON");
+});
+
+
+const showBubble = document.querySelector("#showBubble");
+const showCapture = document.querySelector("#showCapture");
+const clearLog = document.querySelector("#clearLog");
+
+showBubble.addEventListener("click", () => {
+  log.innerHTML = `
+    🔵 Bubbling Order <br><br>
+    BUTTON → MIDDLE → OUTER
+  `;
+});
+
+showCapture.addEventListener("click", () => {
+  log.innerHTML = `
+    🟢 Capturing Order <br><br>
+    OUTER → MIDDLE → BUTTON
+  `;
+});
+
+clearLog.addEventListener("click", () => {
+  log.innerHTML = "Waiting for interaction...";
+});
+
+const pipelineOutput = document.querySelector("#pipelineOutput");
+
+document.querySelectorAll(".pipeline-buttons button").forEach((btn) => {
+
+  btn.addEventListener("click", () => {
+
+    const topic = btn.dataset.topic;
+
+    if (topic === "parsing") {
+      pipelineOutput.innerHTML =
+        "<h3>Parsing</h3><p>The browser reads HTML code and starts understanding its structure.</p>";
+    }
+
+    else if (topic === "tokenization") {
+      pipelineOutput.innerHTML =
+        "<h3>Tokenization</h3><p>The browser breaks the HTML into small tokens like tags and text.</p>";
+    }
+
+    else if (topic === "dom") {
+      pipelineOutput.innerHTML =
+        "<h3>DOM Tree</h3><p>HTML is converted into a tree structure called the Document Object Model (DOM).</p>";
+    }
+
+    else if (topic === "cssom") {
+      pipelineOutput.innerHTML =
+        "<h3>CSSOM Tree</h3><p>The browser reads CSS and creates a CSS Object Model for styling.</p>";
+    }
+
+    else if (topic === "render") {
+      pipelineOutput.innerHTML =
+        "<h3>Render Tree</h3><p>The browser combines DOM and CSSOM to build the Render Tree.</p>";
+    }
+
+    else if (topic === "layout") {
+      pipelineOutput.innerHTML =
+        "<h3>Layout</h3><p>The browser calculates the size and position of every visible element.</p>";
+    }
+
+    else if (topic === "paint") {
+      pipelineOutput.innerHTML =
+        "<h3>Paint</h3><p>Finally, pixels are drawn on the screen and the webpage becomes visible.</p>";
+    }
+
+  });
+
+});

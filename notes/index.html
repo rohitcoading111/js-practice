@@ -7,31 +7,228 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <main>
-        <h1 id="heading">task manager</h1>
-        <input id="taskinp" type="text" placeholder="enter task title ✍️">
+
+  <header class="hero">
+    <div class="hero-content">
+      <h1>🚀 task manager</h1>
+      <p>
+        Task Manager • Event Bubbling • Event Capturing • Browser Rendering Pipeline local storage • DOM Manipulation
+      </p>
+
+      <button id="themebtn">🌙 Dark Mode</button>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <section class="dashboard">
+
+      <div class="left-panel">
+
+        <h2>Create Task</h2>
+
+        <input
+          id="taskinp"
+          type="text"
+          placeholder="✍️ Enter task title..."
+        >
+
         <select id="category">
-        <option value="">Select Category 📥</option>
-        <option value="study">📚 Study</option>
-        <option value="work">💼 Work</option>
-        <option value="personal">🏠 Personal</option>
-         </select> 
-        <button id="addbtn">add</button>
-        <button id="themebtn">themes</button>
-        <input id="searchinp" type="search" placeholder = "search task  🔍">
-         <select id="categorysearch">
-         <option value="">all 📥</option>
-        <option value="study">📚 Study</option>
-        <option value="work">💼 Work</option>
-        <option value="personal">🏠 Personal</option>
-         </select>
-        <div class="counter-box">
-  <p id="total"></p>
-  <p id="completed"></p>
-  <p id="pending"></p>
-</div>
-        <div class="taskcontainer"></div>
-    </main>
-    <script src="script.js"></script>
+          <option value="">📥 Select Category</option>
+          <option value="study">📚 Study</option>
+          <option value="work">💼 Work</option>
+          <option value="personal">🏠 Personal</option>
+        </select>
+
+        <button id="addbtn">
+          ➕ Add Task
+        </button>
+
+      </div>
+
+      <div class="right-panel">
+
+        <h2>Filters</h2>
+
+        <input
+          id="searchinp"
+          type="search"
+          placeholder="🔍 Search task..."
+        >
+
+        <select id="categorysearch">
+          <option value="">📂 All Categories</option>
+          <option value="study">📚 Study</option>
+          <option value="work">💼 Work</option>
+          <option value="personal">🏠 Personal</option>
+        </select>
+
+      </div>
+
+    </section>
+
+    <section class="counter-box">
+
+      <div class="card">
+        <h3 id="total">0</h3>
+        <span>Total Tasks</span>
+      </div>
+
+      <div class="card">
+        <h3 id="completed">0</h3>
+        <span>Completed</span>
+      </div>
+
+      <div class="card">
+        <h3 id="pending">0</h3>
+        <span>Pending</span>
+      </div>
+
+    </section>
+
+    <section>
+
+      <h2 class="section-title">
+        📋 My Tasks
+      </h2>
+
+      <div class="taskcontainer"></div>
+
+    </section>
+
+  </main>
+
+  <section class="demo-section">
+
+    <h2>
+      🫧 Event Bubbling & Event Capturing Demo
+    </h2>
+
+    <p>
+      Click the inner button and observe the event flow.
+    </p>
+
+    <div id="outer">
+
+      OUTER DIV
+
+      <div id="middle">
+
+        MIDDLE DIV
+
+        <button id="innerBtn">
+          CLICK ME
+        </button>
+
+      </div>
+
+    </div>
+
+    <div class="demo-buttons">
+
+      <button id="showBubble">
+        Show Bubbling
+      </button>
+
+      <button id="showCapture">
+        Show Capturing
+      </button>
+
+      <button id="clearLog">
+        Clear Log
+      </button>
+
+    </div>
+
+    <div id="log">
+
+      Waiting for interaction...
+
+    </div>
+
+  </section>
+
+  <section class="pipeline-section">
+
+    <h2>
+      🌐 Browser Rendering Pipeline
+    </h2>
+
+    <div class="pipeline-buttons">
+
+      <button data-topic="parsing">
+        Parsing
+      </button>
+
+      <button data-topic="tokenization">
+        Tokenization
+      </button>
+
+      <button data-topic="dom">
+        DOM Tree
+      </button>
+
+      <button data-topic="cssom">
+        CSSOM Tree
+      </button>
+
+      <button data-topic="render">
+        Render Tree
+      </button>
+
+      <button data-topic="layout">
+        Layout
+      </button>
+
+      <button data-topic="paint">
+        Paint
+      </button>
+
+    </div>
+
+    <div id="pipelineOutput">
+
+      <h3>
+        Browser Rendering Flow
+      </h3>
+
+<pre>
+HTML
+ │
+ ▼
+Parsing
+ │
+ ▼
+Tokenization
+ │
+ ▼
+DOM Tree
+
+CSS
+ │
+ ▼
+CSSOM Tree
+
+DOM + CSSOM
+      │
+      ▼
+ Render Tree
+      │
+      ▼
+ Layout
+      │
+      ▼
+ Paint
+      │
+      ▼
+ Screen
+</pre>
+
+    </div>
+
+  </section>
+
+  <script src="script.js"></script>
+
 </body>
 </html>
