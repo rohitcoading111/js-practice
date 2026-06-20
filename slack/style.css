@@ -563,3 +563,153 @@ nav {
     color:#666;
     font-size:16px;
 }
+.move-faster{
+    width: 85%;
+    margin: 120px auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 100px;
+}
+
+.move-left{
+    flex: 1;
+}
+
+.move-left img{
+    width: 100%;
+    display: block;
+}
+
+.move-right{
+    flex: 1;
+}
+
+.move-right h5{
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.move-right h2{
+    font-size: 60px;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+.move-right p{
+    font-size: 22px;
+    line-height: 1.7;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.move-right a{
+    text-decoration: none;
+    color: #1264a3;
+    font-size: 24px;
+    font-weight: 500;
+}
+.security-section{
+    width: 85%;
+    margin: 120px auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 100px;
+}
+
+.security-left{
+    flex: 1;
+}
+
+.security-left h5{
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.security-left h2{
+    font-size: 58px;
+    line-height: 1.1;
+    margin-bottom: 25px;
+}
+
+.security-left p{
+    font-size: 22px;
+    line-height: 1.7;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.security-left a{
+    text-decoration: none;
+    color: #1264a3;
+    font-size: 22px;
+}
+
+.security-right{
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    background-color: transparent;
+}
+
+.security-right img{
+    width: 100%;
+    max-width: 650px;
+    display: block;
+}
+
+.ai-section{
+    width: 85%;
+    margin: 120px auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 100px;
+}
+
+.ai-left{
+    flex: 1;
+}
+
+.ai-left img{
+    width: 100%;
+    max-width: 650px;
+    display: block;
+}
+
+.ai-right{
+    flex: 1;
+}
+
+.ai-right h5{
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.ai-right h2{
+    font-size: 58px;
+    line-height: 1.1;
+    margin-bottom: 25px;
+    font-weight: 700;
+}
+
+.ai-right p{
+    font-size: 22px;
+    line-height: 1.7;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.ai-right a{
+    text-decoration: none;
+    color: #1264a3;
+    font-size: 22px;
+}
