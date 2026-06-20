@@ -5,7 +5,7 @@ box-sizing:border-box;
 font-family:Arial,sans-serif;
 }
 
-body{
+html,body{
 background:linear-gradient(135deg,#eef2ff,#dbeafe);
 color:#222;
 min-height:100vh;
