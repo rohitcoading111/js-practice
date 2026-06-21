@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <input id="book-title" type="text" placeholder="Book title ">
+        <input id="author-name" type="text" placeholder="Author name">
+        <select  name="category" id="category">
+            <option value="">all</option>
+            <option value="programing">programing</option>
+            <option value="novel">novel</option>
+            <option value="history">history</option>
+            <option value="etc">all</option>
+        </select>
+        <button id="addbook-btn"> add book </button>
+        <input id="search" type="text" placeholder="search">
+        <select name="filter" id="filter">
+            <option value="">all</option>
+            <option value="programing">programing</option>
+            <option value="novel">novel</option>
+            <option value="history">history</option>
+        </select>
+
+        <div id="all-books" class="container"></div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
