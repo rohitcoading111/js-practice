@@ -30,6 +30,10 @@ addBookBtn.addEventListener("click",()=>{
     }
 
     books.push(bookdata);
+    bookTitleInput.value = "";
+authorNameInput.value = "";
+categorySelect.value = "";
+    renderBook()
 })
 
  function renderBook(){
@@ -40,10 +44,22 @@ addBookBtn.addEventListener("click",()=>{
       let h = document.createElement("h2")
       let h3 = document.createElement("h3")
       let p = document.createElement("p")
-      bookDiv.append(h,p,h3);
+      let deletebtn = document.createElement("button")
+      deletebtn.innerText = "delete"
+      let editbtn = document.createElement("button")
+      editbtn.innerText = "edit"
+      bookDiv.append(h,p,h3,deletebtn,editbtn);
       h.textContent = e.title;
       p.textContent = e.author;
       h3.textContent = e.category
       booksContainer.append(bookDiv);
-   })
+      
+      deletebtn.addEventListener("click", () => {
+      books = books.filter((item) => {
+        return item.id !== e.id;
+    });
+
+     renderBook();
+});
+})
 }
