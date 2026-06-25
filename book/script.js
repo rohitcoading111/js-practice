@@ -10,18 +10,24 @@ const booksContainer = document.querySelector("#all-books");
 
 
 let books = [];
-console.log(books);
+let editBook = null;
+
 
 
 addBookBtn.addEventListener("click",()=>{
     let id = Date.now();
     let bookTitle = bookTitleInput.value;
     let authorName = authorNameInput.value;
-    let category = categorySelect.value;
-  if (bookTitleInput.value.trim() === "" || authorNameInput.value.trim() === "") {
+    let category = categorySelect.value;      
+       
+    
+    if (bookTitleInput.value.trim() === "" || authorNameInput.value.trim() === "") {
     return;
 }
 
+
+    if (editBook === null){
+   
     let bookdata = {
           id: id,         
           title : bookTitle,
@@ -29,11 +35,27 @@ addBookBtn.addEventListener("click",()=>{
           category: category
     }
 
-    books.push(bookdata);
+     books.push(bookdata);
+     
     bookTitleInput.value = "";
-authorNameInput.value = "";
-categorySelect.value = "";
-    renderBook()
+    authorNameInput.value = "";
+    categorySelect.value = "";
+     renderBook()
+}
+else
+{
+   const book = books.find((item) => {
+   return item.id === editBook
+});
+   book.title = bookTitle;
+   book.author = authorName;
+   book.category = category;
+   renderBook();
+   bookTitleInput.value = ""
+authorNameInput.value = ""
+categorySelect.value = ""
+editingBook = null;
+}
 })
 
  function renderBook(){
@@ -53,13 +75,21 @@ categorySelect.value = "";
       p.textContent = e.author;
       h3.textContent = e.category
       booksContainer.append(bookDiv);
+      editbtn.classList.add("edit-btn");
+      deletebtn.classList.add("delete-btn");
       
       deletebtn.addEventListener("click", () => {
       books = books.filter((item) => {
         return item.id !== e.id;
     });
-
      renderBook();
 });
+  editbtn.addEventListener("click",()=>{    
+         editBook = e.id;
+         bookTitleInput.value = e.title;
+         authorNameInput.value = e.author;
+         categorySelect.value = e.category;
+      })
+
 })
 }
