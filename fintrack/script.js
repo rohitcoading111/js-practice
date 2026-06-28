@@ -34,6 +34,6 @@ loginForm.addEventListener("submit",(e)=>{
 
    localStorage.setItem("currentUser",JSON.stringify(findUser))
 
- window.location.href = "dashboard.html
+ window.location.href = "dashboard.html";
     
 })
