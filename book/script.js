@@ -90,6 +90,5 @@ editingBook = null;
          authorNameInput.value = e.author;
          categorySelect.value = e.category;
       })
-
 })
 }
