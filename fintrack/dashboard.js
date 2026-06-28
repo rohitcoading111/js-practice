@@ -1,3 +1,9 @@
+let userData = JSON.parse(localStorage.getItem("currentUser"))
+let welcome = document.querySelector("#welcomeText")
+
+
+
+welcome.innerHTML =   ` Welcome Back 👋 mr ${ userData.username}`
 const counters = document.querySelectorAll(".counter");
 
 const startCounter = () => {
