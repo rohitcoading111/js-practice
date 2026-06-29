@@ -1372,3 +1372,106 @@ font-size:22px;
 }
 
 }
+
+
+.edit-btn,
+.delete-btn{
+
+    width:40px;
+
+    height:40px;
+
+    border:none;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    margin-right:8px;
+
+    transition:.3s ease;
+
+    font-size:18px;
+
+}
+
+
+.edit-btn{
+
+    background:#EEF2FF;
+
+    color:#4F46E5;
+
+}
+
+.edit-btn:hover{
+
+    background:#4F46E5;
+
+    color:#fff;
+
+    transform:translateY(-3px) scale(1.08);
+
+    box-shadow:0 10px 20px rgba(79,70,229,.25);
+
+}
+
+
+.delete-btn{
+
+    background:#FEE2E2;
+
+    color:#DC2626;
+
+}
+
+.delete-btn:hover{
+
+    background:#DC2626;
+
+    color:#fff;
+
+    transform:translateY(-3px) scale(1.08);
+
+    box-shadow:0 10px 20px rgba(220,38,38,.25);
+
+}
+
+
+.edit-btn i,
+.delete-btn i{
+
+    pointer-events:none;
+
+    font-size:18px;
+
+}
+
+
+.edit-btn:active,
+.delete-btn:active{
+
+    transform:scale(.92);
+
+}
+.edit-btn:hover i{
+
+    transform:rotate(-15deg);
+
+    transition:.3s;
+
+}
+
+.delete-btn:hover i{
+
+    transform:rotate(15deg);
+
+    transition:.3s;
+
+}

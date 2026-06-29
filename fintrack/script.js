@@ -28,12 +28,10 @@ loginForm.addEventListener("submit",(e)=>{
     
     if(findUser.password === password){
          alert("password matched")
-         return;
     }
-
 
    localStorage.setItem("currentUser",JSON.stringify(findUser))
 
- window.location.href = "dashboard.html";
+   window.location.href = "dashboard.html";
     
 })

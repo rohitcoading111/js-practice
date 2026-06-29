@@ -481,7 +481,7 @@ function renderTransactions() {
             </tr>
         `;
 
-    });
+
 
     const rows = document.querySelectorAll(".transaction-row");
 
@@ -491,7 +491,29 @@ function renderTransactions() {
             row.style.transform = "translateY(0)";
         }, index * 100);
     });
+});
 
-}
+
+const deleteButtons = document.querySelectorAll(".delete-btn");
+     deleteButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+    const clickedId = Number(button.dataset.id);
+    transactions = transactions.filter(item => {
+        if(item.id !== clickedId){
+            return true;
+        }
+        return false;
+    })
+    localStorage.setItem(
+    "transactions",
+    JSON.stringify(transactions)
+); 
+renderTransactions();
+updateDashboard();
+updateChart();
+    });
+    });
+    };
 
 renderTransactions();
