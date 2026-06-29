@@ -146,29 +146,32 @@ function updateChart() {
 
 }
 
-
-
 updateChart();
 
-let theme = localStorage.getItem("mode")
-if(theme === "dark"){
-  document.body.classList.add("dark")
-  moon.remove()
-  
-}
-
 const moon = document.querySelector(".ri-moon-line");
-moon.parentElement.addEventListener("click",()=>{
-document.body.classList.toggle("dark");
-moon.classList.toggle("ri-sun-line");
-moon.classList.toggle("ri-moon-line");
-if (document.body.classList.contains("dark")){
-    localStorage.setItem("mode","dark")
-} else {
-   localStorage.setItem("mode","light")
-}
-});
 
+let theme = localStorage.getItem("mode");
+
+if (theme === "dark") {
+    document.body.classList.add("dark");
+    moon.classList.remove("ri-moon-line");
+    moon.classList.add("ri-sun-line");
+}
+
+moon.parentElement.addEventListener("click", () => {
+
+    document.body.classList.toggle("dark");
+
+    moon.classList.toggle("ri-moon-line");
+    moon.classList.toggle("ri-sun-line");
+
+    if (document.body.classList.contains("dark")) {
+        localStorage.setItem("mode", "dark");
+    } else {
+        localStorage.setItem("mode", "light");
+    }
+
+});
 
 
 const observer = new IntersectionObserver(entries=>{
@@ -420,11 +423,9 @@ transactionForm.addEventListener("submit", (e) => {
     updateChart();
     renderTransactions();
     transactionForm.reset();
-
     transactionModal.classList.remove("active");
 
 });
-
 
 
 
@@ -432,44 +433,70 @@ const transactionList = document.querySelector("#transactionList");
 
 function renderTransactions() {
 
+    // Local Storage se latest data lo
+    transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+
+    // Table clear karo
     transactionList.innerHTML = "";
 
-    transactions.forEach(item => {
+    // Agar koi transaction nahi hai
+    if (transactions.length === 0) {
+        transactionList.innerHTML = `
+            <tr>
+                <td colspan="6" style="text-align:center;padding:20px;">
+                    No Transactions Found
+                </td>
+            </tr>
+        `;
+        return;
+    }
+
+    // Transactions show karo
+    transactions.forEach((item, index) => {
 
         transactionList.innerHTML += `
+            <tr class="transaction-row" style="
+                opacity:0;
+                transform:translateY(20px);
+                transition:all .4s ease;
+            ">
 
-        <tr>
+                <td>${item.title}</td>
+                <td>${item.date}</td>
+                <td>${item.category}</td>
+                <td>₹${item.amount.toLocaleString()}</td>
 
-            <td>${item.title}</td>
+                <td>
+                    <span class="${item.type}">
+                        ${item.type}
+                    </span>
+                </td>
 
-            <td>${item.date}</td>
+                <td>
+                    <button class="edit-btn" data-id="${item.id}">
+                        <i class="ri-edit-line"></i>
+                    </button>
 
-            <td>${item.category}</td>
+                    <button class="delete-btn" data-id="${item.id}">
+                        <i class="ri-delete-bin-line"></i>
+                    </button>
+                </td>
 
-            <td>₹${item.amount.toLocaleString()}</td>
-
-            <td>
-                <span class="${item.type}">
-                    ${item.type}
-                </span>
-            </td>
-
-            <td>
-
-                <button class="edit-btn" data-id="${item.id}">
-                    <i class="ri-edit-line"></i>
-                </button>
-
-                <button class="delete-btn" data-id="${item.id}">
-                    <i class="ri-delete-bin-line"></i>
-                </button>
-
-            </td>
-
-        </tr>
-
+            </tr>
         `;
 
     });
 
+    // Animation
+    const rows = document.querySelectorAll(".transaction-row");
+
+    rows.forEach((row, index) => {
+        setTimeout(() => {
+            row.style.opacity = "1";
+            row.style.transform = "translateY(0)";
+        }, index * 100);
+    });
+
 }
+
+renderTransactions();
