@@ -1098,3 +1098,277 @@ body.dark thead{
 background:#263246;
 
 }
+
+/* ========================= */
+/* Modal Overlay */
+/* ========================= */
+
+.modal-overlay{
+
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0,0,0,.45);
+
+    backdrop-filter: blur(8px);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition: .35s ease;
+
+    z-index: 999;
+
+}
+
+.modal-overlay.active{
+
+    opacity: 1;
+
+    visibility: visible;
+
+}
+
+
+/* ========================= */
+
+.transaction-modal{
+
+    width: 560px;
+
+    max-width: 92%;
+
+    background: #fff;
+
+    border-radius: 24px;
+
+    padding: 30px;
+
+    box-shadow: 0 25px 70px rgba(0,0,0,.18);
+
+    transform: translateY(40px) scale(.95);
+
+    transition: .35s;
+
+}
+
+.modal-overlay.active .transaction-modal{
+
+    transform: translateY(0) scale(1);
+
+}
+
+
+/* ========================= */
+
+.modal-header{
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 25px;
+
+}
+
+.modal-header h2{
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    font-size: 28px;
+
+    color: #111827;
+
+}
+
+.modal-header button{
+
+    width: 42px;
+
+    height: 42px;
+
+    border: none;
+
+    background: #F3F4F6;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    transition: .3s;
+
+}
+
+.modal-header button:hover{
+
+    background: #E5E7EB;
+
+    transform: rotate(90deg);
+
+}
+
+.modal-header i{
+
+    font-size: 22px;
+
+}
+
+
+/* ========================= */
+
+.form-group{
+
+    display: flex;
+
+    flex-direction: column;
+
+    margin-bottom: 20px;
+
+}
+
+.form-group label{
+
+    margin-bottom: 8px;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    color: #374151;
+
+}
+
+.form-group input,
+
+.form-group select,
+
+.form-group textarea{
+
+    width: 100%;
+
+    padding: 14px 16px;
+
+    border: 1px solid #D1D5DB;
+
+    border-radius: 14px;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition: .25s;
+
+    background: #fff;
+
+}
+
+.form-group textarea{
+
+    resize: none;
+
+}
+
+.form-group input:focus,
+
+.form-group select:focus,
+
+.form-group textarea:focus{
+
+    border-color: #4F46E5;
+
+    box-shadow: 0 0 0 4px rgba(79,70,229,.12);
+
+}
+
+
+/* ========================= */
+
+.double-input{
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 18px;
+
+}
+
+
+/* ========================= */
+
+.save-btn{
+
+    width: 100%;
+
+    border: none;
+
+    padding: 16px;
+
+    border-radius: 14px;
+
+    cursor: pointer;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    color: white;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 10px;
+
+    background: linear-gradient(135deg,#4F46E5,#06B6D4);
+
+    transition: .3s;
+
+}
+
+.save-btn:hover{
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 15px 30px rgba(79,70,229,.25);
+
+}
+
+
+
+@media(max-width:700px){
+
+.double-input{
+
+grid-template-columns:1fr;
+
+}
+
+.transaction-modal{
+
+padding:22px;
+
+}
+
+.modal-header h2{
+
+font-size:22px;
+
+}
+
+}

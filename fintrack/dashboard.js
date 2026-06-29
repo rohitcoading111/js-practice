@@ -1,155 +1,157 @@
 let userData = JSON.parse(localStorage.getItem("currentUser"))
 let welcome = document.querySelector("#welcomeText")
 
-
-
 welcome.innerHTML =   ` Welcome Back 👋 mr ${ userData.username}`
 const counters = document.querySelectorAll(".counter");
+let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
 
-const startCounter = () => {
+const balanceValue = document.querySelector("#balanceValue");
+const incomeValue = document.querySelector("#incomeValue");
+const expenseValue = document.querySelector("#expenseValue");
+const transactionCount = document.querySelector("#transactionCount");
 
-    counters.forEach(counter => {
 
-        const target = +counter.dataset.target;
+function updateDashboard() {
 
-        let current = 0;
+    let income = 0;
+    let expense = 0;
 
-        const increment = target / 80;
+    transactions.forEach(item => {
 
-        const update = () => {
+        if (item.type === "income") {
 
-            current += increment;
+            income += item.amount;
 
-            if(current < target){
+        } else {
 
-                if(target > 1000){
+            expense += item.amount;
 
-                    counter.innerHTML =
-                    "₹" + Math.floor(current).toLocaleString();
+        }
 
-                }else{
+    });
 
-                    counter.innerHTML =
-                    Math.floor(current);
+    balanceValue.innerHTML = `₹${(income - expense).toLocaleString()}`;
+    incomeValue.innerHTML = `₹${income.toLocaleString()}`;
+    expenseValue.innerHTML = `₹${expense.toLocaleString()}`;transactionCount.innerHTML = transactions.length;
+
+}
+
+updateDashboard();
+
+
+const ctx = document.getElementById("incomeChart");
+
+let incomeChart;
+
+if (ctx) {
+
+    incomeChart = new Chart(ctx, {
+
+        type: "line",
+
+        data: {
+
+            labels: [],
+
+            datasets: [{
+
+                label: "Transactions",
+
+                data: [],
+
+                borderWidth: 4,
+
+                borderColor: "#4F46E5",
+
+                backgroundColor: "rgba(79,70,229,.12)",
+
+                fill: true,
+
+                tension: .45,
+
+                pointRadius: 5,
+
+                pointHoverRadius: 8
+
+            }]
+
+        },
+
+        options: {
+
+            responsive: true,
+
+            plugins: {
+
+                legend: {
+
+                    display: false
 
                 }
 
-                requestAnimationFrame(update);
+            },
 
-            }else{
+            scales: {
 
-                if(target > 1000){
+                x: {
 
-                    counter.innerHTML =
-                    "₹" + target.toLocaleString();
+                    grid: {
 
-                }else{
+                        display: false
 
-                    counter.innerHTML =
-                    target;
+                    }
+
+                },
+
+                y: {
+
+                    beginAtZero: true,
+
+                    grid: {
+
+                        color: "#EEF2F7"
+
+                    }
 
                 }
+
+            },
+
+            animation: {
+
+                duration: 1200
 
             }
 
         }
 
-        update();
-
     });
 
 }
 
-startCounter();
 
+function updateChart() {
 
-const ctx = document.getElementById("incomeChart");
+    if (!incomeChart) return;
 
-if(ctx){
+    const labels = transactions.map(item => item.title);
 
-new Chart(ctx,{
+    const amounts = transactions.map(item => item.amount);
 
-type:"line",
+    incomeChart.data.labels = labels;
 
-data:{
+    incomeChart.data.datasets[0].data = amounts;
 
-labels:[
-"Jan",
-"Feb",
-"Mar",
-"Apr",
-"May",
-"Jun",
-"Jul"
-],
-
-datasets:[{
-
-label:"Income",
-
-data:[
-12000,
-19000,
-16000,
-25000,
-22000,
-33000,
-45000
-],
-
-borderWidth:4,
-
-borderColor:"#4F46E5",
-
-backgroundColor:"rgba(79,70,229,.12)",
-
-fill:true,
-
-tension:.45,
-
-pointRadius:5,
-
-pointHoverRadius:8
-
-}]
-
-},
-
-options:{
-
-responsive:true,
-
-plugins:{
-legend:{
-display:false
-}
-},
-
-scales:{
-
-x:{
-grid:{
-display:false
-}
-},
-
-y:{
-grid:{
-color:"#EEF2F7"
-}
-}
-
-},
-
-animation:{
-duration:1800
-}
+    incomeChart.update();
 
 }
 
-});
 
-}
+/* ===========================
+   Page Load
+=========================== */
+
+updateChart();
 
 let theme = localStorage.getItem("mode")
 if(theme === "dark"){
@@ -316,3 +318,162 @@ item.classList.add("active");
 });
 
 });
+
+
+
+const transactionType = document.querySelector("#transactionType");
+const transactionTitle = document.querySelector("#transactionTitle");
+const transactionAmount = document.querySelector("#transactionAmount");
+const transactionCategory = document.querySelector("#transactionCategory");
+const transactionDate = document.querySelector("#transactionDate");
+const paymentMethod = document.querySelector("#paymentMethod");
+const transactionNote = document.querySelector("#transactionNote");
+
+
+
+const transactionModal = document.querySelector("#transactionModal");
+
+const openModalBtn = document.querySelector("#openTransactionModal");
+
+const closeModalBtn = document.querySelector("#closeModal");
+
+const transactionForm = document.querySelector("#transactionForm");
+
+openModalBtn.addEventListener("click", () => {
+
+    transactionModal.classList.add("active");
+
+});
+
+closeModalBtn.addEventListener("click", () => {
+
+    transactionModal.classList.remove("active");
+
+});
+
+transactionModal.addEventListener("click", (e) => {
+
+    if (e.target === transactionModal) {
+
+        transactionModal.classList.remove("active");
+
+    }
+
+});
+
+document.addEventListener("keydown", (e) => {
+
+    if (e.key === "Escape") {
+
+        transactionModal.classList.remove("active");
+
+    }
+
+});
+
+transactionForm.addEventListener("submit", (e) => {
+
+    e.preventDefault();
+
+    const type = transactionType.value;
+    const title = transactionTitle.value.trim();
+    const amount = Number(transactionAmount.value);
+    const category = transactionCategory.value;
+    const date = transactionDate.value;
+    const payment = paymentMethod.value;
+    const note = transactionNote.value.trim();
+
+    if (
+        title === "" ||
+        amount <= 0 ||
+        category === "" ||
+        date === ""
+    ) {
+        alert("Please fill all required fields");
+        return;
+    }
+
+    const transactionObject = {
+
+        id: Date.now(),
+
+        type,
+
+        title,
+
+        amount,
+
+        category,
+
+        date,
+
+        payment,
+
+        note
+
+    };
+
+    transactions.push(transactionObject);
+
+    localStorage.setItem(
+        "transactions",
+        JSON.stringify(transactions)
+    );
+
+    updateDashboard();
+    updateChart();
+    renderTransactions();
+    transactionForm.reset();
+
+    transactionModal.classList.remove("active");
+
+});
+
+
+
+
+const transactionList = document.querySelector("#transactionList");
+
+function renderTransactions() {
+
+    transactionList.innerHTML = "";
+
+    transactions.forEach(item => {
+
+        transactionList.innerHTML += `
+
+        <tr>
+
+            <td>${item.title}</td>
+
+            <td>${item.date}</td>
+
+            <td>${item.category}</td>
+
+            <td>₹${item.amount.toLocaleString()}</td>
+
+            <td>
+                <span class="${item.type}">
+                    ${item.type}
+                </span>
+            </td>
+
+            <td>
+
+                <button class="edit-btn" data-id="${item.id}">
+                    <i class="ri-edit-line"></i>
+                </button>
+
+                <button class="delete-btn" data-id="${item.id}">
+                    <i class="ri-delete-bin-line"></i>
+                </button>
+
+            </td>
+
+        </tr>
+
+        `;
+
+    });
+
+}

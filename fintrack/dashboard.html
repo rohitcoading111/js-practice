@@ -19,6 +19,212 @@
 <div class="dashboard">
 
 
+<div class="modal-overlay" id="transactionModal">
+
+    <div class="transaction-modal">
+
+        <div class="modal-header">
+
+            <h2>
+                <i class="ri-wallet-3-line"></i>
+                Add Transaction
+            </h2>
+
+            <button id="closeModal">
+                <i class="ri-close-line"></i>
+            </button>
+
+        </div>
+
+
+        <form id="transactionForm">
+
+            <div class="form-group">
+
+                <label>Transaction Type</label>
+
+                <select id="transactionType">
+
+                    <option value="income">
+                        Income
+                    </option>
+
+                    <option value="expense">
+                        Expense
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Title</label>
+
+                <input
+                    type="text"
+                    id="transactionTitle"
+                    placeholder="Salary, Food, Shopping..."
+                >
+
+            </div>
+
+
+            <div class="double-input">
+
+                <div class="form-group">
+
+                    <label>Amount</label>
+
+                    <input
+                        type="number"
+                        id="transactionAmount"
+                        placeholder="₹ Enter Amount"
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Date</label>
+
+                    <input
+                        type="date"
+                        id="transactionDate"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Category</label>
+
+                <select id="transactionCategory">
+
+                    <option value="">
+                        Select Category
+                    </option>
+
+                    <option>
+                        Salary
+                    </option>
+
+                    <option>
+                        Freelancing
+                    </option>
+
+                    <option>
+                        Business
+                    </option>
+
+                    <option>
+                        Food
+                    </option>
+
+                    <option>
+                        Shopping
+                    </option>
+
+                    <option>
+                        Rent
+                    </option>
+
+                    <option>
+                        Bills
+                    </option>
+
+                    <option>
+                        Entertainment
+                    </option>
+
+                    <option>
+                        Travel
+                    </option>
+
+                    <option>
+                        Health
+                    </option>
+
+                    <option>
+                        Education
+                    </option>
+
+                    <option>
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Payment Method</label>
+
+                <select id="paymentMethod">
+
+                    <option>
+                        Cash
+                    </option>
+
+                    <option>
+                        UPI
+                    </option>
+
+                    <option>
+                        Credit Card
+                    </option>
+
+                    <option>
+                        Debit Card
+                    </option>
+
+                    <option>
+                        Net Banking
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Notes</label>
+
+                <textarea
+                    id="transactionNote"
+                    rows="4"
+                    placeholder="Write something..."
+                ></textarea>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="save-btn"
+                id="saveTransactionBtn"
+            >
+
+                <i class="ri-check-line"></i>
+
+                Save Transaction
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
     <aside class="sidebar">
 
         <div class="logo">
@@ -38,7 +244,7 @@
                 <i class="ri-dashboard-3-line"></i>
                 Dashboard
             </a>
-
+<!-- 
             <a href="#">
                 <i class="ri-wallet-3-line"></i>
                 Wallet
@@ -62,7 +268,7 @@
             <a href="#">
                 <i class="ri-user-3-line"></i>
                 Customers
-            </a>
+            </a> -->
 
             <a href="#">
                 <i class="ri-settings-3-line"></i>
@@ -72,17 +278,12 @@
         </nav>
 
 
-        <div class="sidebar-bottom">
-
-            <button>
-
-                <i class="ri-add-circle-line"></i>
-
-                New Transaction
-
-            </button>
-
-        </div>
+       <div class="sidebar-bottom">
+    <button id="openTransactionModal">
+        <i class="ri-add-circle-line"></i>
+        New Transaction
+    </button>
+</div>
 
     </aside>
 
@@ -158,96 +359,90 @@
 
         <section class="stats-grid">
 
-            <div class="card">
+    <div class="card">
 
-                <div class="card-top">
+        <div class="card-top">
 
-                    <div class="card-icon blue">
-
-                        <i class="ri-wallet-3-line"></i>
-
-                    </div>
-
-                    <span>+14%</span>
-
-                </div>
-
-                <h2 class="counter" data-target="78500">
-                    ₹0
-                </h2>
-
-                <p>Total Balance</p>
-
+            <div class="card-icon blue">
+                <i class="ri-wallet-3-line"></i>
             </div>
 
+            <span>+14%</span>
 
-            <div class="card">
+        </div>
 
-                <div class="card-top">
+        <h2 id="balanceValue">
+            ₹0
+        </h2>
 
-                    <div class="card-icon green">
+        <p>Total Balance</p>
 
-                        <i class="ri-arrow-up-circle-line"></i>
+    </div>
 
-                    </div>
 
-                    <span>+8%</span>
+    <div class="card">
 
-                </div>
+        <div class="card-top">
 
-                <h2 class="counter" data-target="45000">
-                    ₹0
-                </h2>
-
-                <p>Income</p>
-
+            <div class="card-icon green">
+                <i class="ri-arrow-up-circle-line"></i>
             </div>
 
-            <div class="card">
+            <span>+8%</span>
 
-                <div class="card-top">
+        </div>
 
-                    <div class="card-icon red">
+        <h2 id="incomeValue">
+            ₹0
+        </h2>
 
-                        <i class="ri-arrow-down-circle-line"></i>
+        <p>Income</p>
 
-                    </div>
+    </div>
 
-                    <span>-4%</span>
 
-                </div>
+    <div class="card">
 
-                <h2 class="counter" data-target="27000">
-                    ₹0
-                </h2>
+        <div class="card-top">
 
-                <p>Expenses</p>
-
+            <div class="card-icon red">
+                <i class="ri-arrow-down-circle-line"></i>
             </div>
 
-            <div class="card">
+            <span>-4%</span>
 
-                <div class="card-top">
+        </div>
 
-                    <div class="card-icon purple">
+        <h2 id="expenseValue">
+            ₹0
+        </h2>
 
-                        <i class="ri-bank-card-line"></i>
+        <p>Expenses</p>
 
-                    </div>
+    </div>
 
-                    <span>+19%</span>
 
-                </div>
+    <div class="card">
 
-                <h2 class="counter" data-target="185">
-                    0
-                </h2>
+        <div class="card-top">
 
-                <p>Total Transactions</p>
-
+            <div class="card-icon purple">
+                <i class="ri-bank-card-line"></i>
             </div>
 
-        </section>
+            <span>+19%</span>
+
+        </div>
+
+        <h2 id="transactionCount">
+            0
+        </h2>
+
+        <p>Total Transactions</p>
+
+    </div>
+
+</section>
 
         <section class="content-grid">
 
@@ -275,126 +470,42 @@
 
                 </div>
 
-                <div class="panel table-panel">
+               <div class="panel table-panel">
 
-                    <div class="panel-header">
+    <div class="panel-header">
 
-                        <h3>Recent Transactions</h3>
+        <h3>Recent Transactions</h3>
 
-                        <a href="#">View All</a>
+        <a href="#">View All</a>
 
-                    </div>
+    </div>
 
-                    <table>
+    <table>
 
-                        <thead>
+        <thead>
 
-                            <tr>
+            <tr>
 
-                                <th>Name</th>
-                                <th>Date</th>
-                                <th>Category</th>
-                                <th>Amount</th>
-                                <th>Status</th>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Category</th>
+                <th>Amount</th>
+                <th>Type</th>
+                <th>Action</th>
 
-                            </tr>
+            </tr>
 
-                        </thead>
+        </thead>
 
-                        <tbody>
+        <tbody id="transactionList">
 
-                            <tr>
+            <!-- JS yaha transactions add karega -->
 
-                                <td>Netflix</td>
-                                <td>12 Jun</td>
-                                <td>Subscription</td>
-                                <td>- ₹799</td>
+        </tbody>
 
-                                <td>
-                                    <span class="success">
-                                        Paid
-                                    </span>
-                                </td>
+    </table>
 
-                            </tr>
-
-                            <tr>
-
-                                <td>Salary</td>
-                                <td>10 Jun</td>
-                                <td>Income</td>
-                                <td>+ ₹45,000</td>
-
-                                <td>
-                                    <span class="success">
-                                        Received
-                                    </span>
-                                </td>
-
-                            </tr>
-
-                            <tr>
-
-                                <td>Amazon</td>
-                                <td>09 Jun</td>
-                                <td>Shopping</td>
-                                <td>- ₹2,450</td>
-
-                                <td>
-
-                                    <span class="pending">
-
-                                        Pending
-
-                                    </span>
-
-                                </td>
-
-                            </tr>
-
-                            <tr>
-
-                                <td>Electricity Bill</td>
-                                <td>08 Jun</td>
-                                <td>Utility</td>
-                                <td>- ₹1,250</td>
-
-                                <td>
-
-                                    <span class="success">
-
-                                        Paid
-
-                                    </span>
-
-                                </td>
-
-                            </tr>
-
-                            <tr>
-
-                                <td>Freelance</td>
-                                <td>07 Jun</td>
-                                <td>Income</td>
-                                <td>+ ₹18,000</td>
-
-                                <td>
-
-                                    <span class="success">
-
-                                        Received
-
-                                    </span>
-
-                                </td>
-
-                            </tr>
-
-                        </tbody>
-
-                    </table>
-
-                </div>
+</div>
 
             </div>
 
@@ -418,15 +529,15 @@
 
                 </div>
 
-                <div class="panel">
-
+                <!-- <div class="panel"> -->
+<!-- 
                     <div class="panel-header">
 
                         <h3>Goals</h3>
 
-                    </div>
+                    </div> -->
 
-                    <div class="goal">
+                    <!-- <div class="goal">
 
                         <p>Emergency Fund</p>
 
@@ -460,11 +571,11 @@
 
                         </div>
 
-                    </div>
+                    </div> -->
 
                 </div>
 
-                <div class="panel">
+                <!-- <div class="panel">
 
                     <div class="panel-header">
 
@@ -508,11 +619,13 @@
 
                     </ul>
 
-                </div>
+                </div> -->
 
             </aside>
 
         </section>
+
+        
 
     </main>
 
