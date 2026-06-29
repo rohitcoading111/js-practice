@@ -147,9 +147,6 @@ function updateChart() {
 }
 
 
-/* ===========================
-   Page Load
-=========================== */
 
 updateChart();
 
@@ -201,7 +198,6 @@ item.style.transition=".8s";
 observer.observe(item);
 
 });
-
 
 
 document.querySelectorAll("button").forEach(button=>{
