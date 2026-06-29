@@ -433,13 +433,10 @@ const transactionList = document.querySelector("#transactionList");
 
 function renderTransactions() {
 
-    // Local Storage se latest data lo
     transactions = JSON.parse(localStorage.getItem("transactions")) || [];
 
-    // Table clear karo
     transactionList.innerHTML = "";
 
-    // Agar koi transaction nahi hai
     if (transactions.length === 0) {
         transactionList.innerHTML = `
             <tr>
@@ -451,7 +448,6 @@ function renderTransactions() {
         return;
     }
 
-    // Transactions show karo
     transactions.forEach((item, index) => {
 
         transactionList.innerHTML += `
@@ -487,7 +483,6 @@ function renderTransactions() {
 
     });
 
-    // Animation
     const rows = document.querySelectorAll(".transaction-row");
 
     rows.forEach((row, index) => {
