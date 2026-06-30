@@ -508,7 +508,6 @@ function renderTransactions() {
 
 const deleteButtons = document.querySelectorAll(".delete-btn");
      deleteButtons.forEach(button => {
-
     button.addEventListener("click", () => {
     const clickedId = Number(button.dataset.id);
     transactions = transactions.filter(item => {
@@ -526,7 +525,7 @@ updateDashboard();
 updateChart();
     });
     });
-    
+
 const editBtn = document.querySelectorAll(".edit-btn");
 editBtn.forEach(button => {
     button.addEventListener("click", () => {

@@ -114,12 +114,9 @@ background:rgba(255,255,255,.65);
 backdrop-filter:blur(25px);
 
 padding:30px;
-
-display:flex;
-
-flex-direction:column;
-
-justify-content:space-between;
+display: flex;
+flex-direction: column;
+gap: 100px;
 
 border-right:1px solid rgba(255,255,255,.3);
 
@@ -174,13 +171,9 @@ font-weight:800;
 
 
 .menu{
-
 display:flex;
-
 flex-direction:column;
-
 gap:10px;
-
 }
 
 .menu a{
@@ -257,21 +250,13 @@ background:linear-gradient(
 #4F46E5,
 #06B6D4
 );
-
 color:white;
-
 font-weight:700;
-
 cursor:pointer;
-
 transition:.35s;
-
 display:flex;
-
 justify-content:center;
-
 align-items:center;
-
 gap:12px;
 
 }
