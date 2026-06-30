@@ -10,7 +10,7 @@ const incomeValue = document.querySelector("#incomeValue");
 const expenseValue = document.querySelector("#expenseValue");
 const transactionCount = document.querySelector("#transactionCount");
 
-
+let editingTransaction = null;
 function updateDashboard() {
 
     let income = 0;
@@ -411,8 +411,21 @@ transactionForm.addEventListener("submit", (e) => {
         note
 
     };
-
-    transactions.push(transactionObject);
+    if(editingTransaction){
+     editingTransaction.title = title;
+     editingTransaction.amount = amount;
+     editingTransaction.category = category;
+     editingTransaction.type = type;
+     editingTransaction.date = date;
+     editingTransaction.payment = payment;
+    editingTransaction.note = note;
+     editingTransaction = null;
+     transactionForm.reset();
+     transactionModal.classList.remove("active");
+   }
+   else{
+     transactions.push(transactionObject);
+   }
 
     localStorage.setItem(
         "transactions",
@@ -493,7 +506,6 @@ function renderTransactions() {
     });
 });
 
-
 const deleteButtons = document.querySelectorAll(".delete-btn");
      deleteButtons.forEach(button => {
 
@@ -514,6 +526,26 @@ updateDashboard();
 updateChart();
     });
     });
-    };
+    
+const editBtn = document.querySelectorAll(".edit-btn");
+editBtn.forEach(button => {
+    button.addEventListener("click", () => {
+        console.log("clicked");
+        const clickedId = Number(button.dataset.id);
+        const transaction = transactions.find(item => item.id === clickedId);
+        transactionModal.classList.add("active");
+        transactionTitle.value = transaction.title;
+        transactionType.value = transaction.type;
+        transactionAmount.value = transaction.amount;
+        transactionCategory.value = transaction.category;
+        transactionDate.value = transaction.date;
+        transactionType.value = transaction.type;
+        transactionTitle.value = transaction.title;
+        editingTransaction = transaction;
+    })
+ })
+};
+
+
 
 renderTransactions();
