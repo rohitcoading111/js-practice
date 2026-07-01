@@ -1,15 +1,52 @@
 let userData = JSON.parse(localStorage.getItem("currentUser"))
 let welcome = document.querySelector("#welcomeText")
-
-welcome.innerHTML =   ` Welcome Back 👋 mr ${ userData.username}`
+const logout = document.querySelector(".primary-btn")
 const counters = document.querySelectorAll(".counter");
-let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
-
+const setting = document.querySelector(".setting")
 const balanceValue = document.querySelector("#balanceValue");
 const incomeValue = document.querySelector("#incomeValue");
 const expenseValue = document.querySelector("#expenseValue");
 const transactionCount = document.querySelector("#transactionCount");
 
+
+
+
+const dashboardPage = document.querySelector("#dashboardPage");
+const settingsPage = document.querySelector("#settingsPage");
+
+
+
+const dashboardLink = document.querySelector("#dashboardLink");
+const settingsLink = document.querySelector("#settingsLink");
+
+
+
+const settingsForm = document.querySelector("#settingsForm");
+
+const settingsUsername = document.querySelector("#settingsUsername");
+
+const currentPassword = document.querySelector("#currentPassword");
+
+const newPassword = document.querySelector("#newPassword");
+
+const confirmPassword = document.querySelector("#confirmPassword");
+
+
+
+const profilePreview = document.querySelector("#profilePreview");
+
+const profileInput = document.querySelector("#profileInput");
+
+
+const saveBtn = document.querySelector(".save-btn");
+
+
+let users = JSON.parse(localStorage.getItem("users")) || [];
+let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+
+welcome.innerHTML =   ` Welcome Back 👋 mr ${ userData.username}`
+let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
 let editingTransaction = null;
 function updateDashboard() {
 
@@ -418,7 +455,7 @@ transactionForm.addEventListener("submit", (e) => {
      editingTransaction.type = type;
      editingTransaction.date = date;
      editingTransaction.payment = payment;
-    editingTransaction.note = note;
+     editingTransaction.note = note;
      editingTransaction = null;
      transactionForm.reset();
      transactionModal.classList.remove("active");
@@ -440,7 +477,9 @@ transactionForm.addEventListener("submit", (e) => {
 
 });
 
-
+logout.addEventListener("click", ()=> {
+    window.location.href = "index.html";
+})
 
 const transactionList = document.querySelector("#transactionList");
 
@@ -493,7 +532,6 @@ function renderTransactions() {
 
             </tr>
         `;
-
 
 
     const rows = document.querySelectorAll(".transaction-row");

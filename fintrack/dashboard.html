@@ -270,7 +270,7 @@
                 Customers
             </a> -->
 
-            <a href="#">
+            <a href="#" class="setting">
                 <i class="ri-settings-3-line"></i>
                 Settings
             </a>
@@ -350,7 +350,7 @@
 
             <button class="primary-btn">
 
-                Generate Report
+               logout
 
             </button>
 
@@ -525,105 +525,98 @@
 
                 </div>
 
-                <!-- <div class="panel"> -->
-<!-- 
-                    <div class="panel-header">
-
-                        <h3>Goals</h3>
-
-                    </div> -->
-
-                    <!-- <div class="goal">
-
-                        <p>Emergency Fund</p>
-
-                        <div class="progress">
-
-                            <div class="progress-fill w70"></div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="goal">
-
-                        <p>Vacation</p>
-
-                        <div class="progress">
-
-                            <div class="progress-fill w45"></div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="goal">
-
-                        <p>New Car</p>
-
-                        <div class="progress">
-
-                            <div class="progress-fill w30"></div>
-
-                        </div>
-
-                    </div> -->
-
-                </div>
-
-                <!-- <div class="panel">
-
-                    <div class="panel-header">
-
-                        <h3>Recent Activity</h3>
-
-                    </div>
-
-                    <ul class="activity-list">
-
-                        <li>
-
-                            <i class="ri-checkbox-circle-fill"></i>
-
-                            Salary Received
-
-                        </li>
-
-                        <li>
-
-                            <i class="ri-shopping-bag-line"></i>
-
-                            Amazon Order
-
-                        </li>
-
-                        <li>
-
-                            <i class="ri-bank-card-line"></i>
-
-                            Card Payment
-
-                        </li>
-
-                        <li>
-
-                            <i class="ri-wallet-3-line"></i>
-
-                            Wallet Updated
-
-                        </li>
-
-                    </ul>
-
-                </div> -->
 
             </aside>
 
         </section>
 
+
+        <section id="settingsPage" style="display: none;">
+
+    <div class="settings-header">
+        <h2>⚙️ Profile Settings</h2>
+        <p>Manage your account information and security.</p>
+    </div>
+
+    <div class="settings-card">
+
+        <div class="profile-image">
+
+            <img src="https://i.pravatar.cc/120" id="profilePreview">
+
+            <label for="profileInput" class="upload-btn">
+                Change Photo
+            </label>
+
+            <input type="file" id="profileInput" hidden>
+
+        </div>
+
+        <form id="settingsForm">
+
+            <div class="input-group">
+
+                <label>Username</label>
+                <input
+                    type="text"
+                    id="settingsUsername"
+                    placeholder="Username">
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Email</label>
+                <input
+                    type="email"
+                    id="settingsEmail"
+                    placeholder="Email">
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Current Password</label>
+                <input
+                    type="password"
+                    id="currentPassword"
+                    placeholder="Current Password">
+
+            </div>
+
+            <div class="input-group">
+
+                <label>New Password</label>
+                <input
+                    type="password"
+                    id="newPassword"
+                    placeholder="New Password">
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Confirm Password</label>
+                <input
+                    type="password"
+                    id="confirmPassword"
+                    placeholder="Confirm Password">
+
+            </div>
+
+            <button class="save-btn">
+                Save Changes
+            </button>
+
+        </form>
+    </div>
+
+</section>
         
 
     </main>
+
+    
 
 </div>
 
