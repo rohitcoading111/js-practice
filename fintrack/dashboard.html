@@ -16,7 +16,7 @@
 
 <body>
 
-<div class="dashboard">
+<div class="dashboard" id="dashboardPage">
 
 
 <div class="modal-overlay" id="transactionModal">
@@ -239,51 +239,25 @@
 
 
         <nav class="menu">
+<a href="#" id="dashboardLink" class="active">
+    <i class="ri-dashboard-3-line"></i>
+    Dashboard
+</a>
 
-            <a href="#" class="active">
-                <i class="ri-dashboard-3-line"></i>
-                Dashboard
-            </a>
-<!-- 
-            <a href="#">
-                <i class="ri-wallet-3-line"></i>
-                Wallet
-            </a>
-
-            <a href="#">
-                <i class="ri-line-chart-line"></i>
-                Analytics
-            </a>
-
-            <a href="#">
-                <i class="ri-bank-card-line"></i>
-                Payments
-            </a>
-
-            <a href="#">
-                <i class="ri-exchange-dollar-line"></i>
-                Transactions
-            </a>
-
-            <a href="#">
-                <i class="ri-user-3-line"></i>
-                Customers
-            </a> -->
-
-            <a href="#" class="setting">
-                <i class="ri-settings-3-line"></i>
-                Settings
-            </a>
-
+<a href="#" id="settingsLink">
+    <i class="ri-settings-3-line"></i>
+    Settings
+</a>
+        
         </nav>
 
 
        <div class="sidebar-bottom">
-    <button id="openTransactionModal">
+      <button id="openTransactionModal">
         <i class="ri-add-circle-line"></i>
         New Transaction
-    </button>
-</div>
+      </button>
+    </div>
 
     </aside>
 
@@ -315,13 +289,9 @@
                 </button>
 
                 <div class="profile">
-
                     <img src="https://i.pravatar.cc/100" alt="">
-
                     <div>
-
-                        <h4>Rohit</h4>
-
+                        <h4 class="change"></h4>
                         <span>Administrator</span>
 
                     </div>
@@ -513,7 +483,7 @@
 
                     <img src="https://i.pravatar.cc/150?img=13">
 
-                    <h3>Rohit Pandey</h3>
+                    <h3 class="change2"></h3>
 
                     <span>Financial Manager</span>
 
@@ -531,7 +501,15 @@
         </section>
 
 
-        <section id="settingsPage" style="display: none;">
+        
+
+    </main>
+
+    
+
+</div>
+
+<section id="settingsPage" style="display: none;">
 
     <div class="settings-header">
         <h2>⚙️ Profile Settings</h2>
@@ -544,9 +522,6 @@
 
             <img src="https://i.pravatar.cc/120" id="profilePreview">
 
-            <label for="profileInput" class="upload-btn">
-                Change Photo
-            </label>
 
             <input type="file" id="profileInput" hidden>
 
@@ -563,27 +538,6 @@
                     placeholder="Username">
 
             </div>
-
-            <div class="input-group">
-
-                <label>Email</label>
-                <input
-                    type="email"
-                    id="settingsEmail"
-                    placeholder="Email">
-
-            </div>
-
-            <div class="input-group">
-
-                <label>Current Password</label>
-                <input
-                    type="password"
-                    id="currentPassword"
-                    placeholder="Current Password">
-
-            </div>
-
             <div class="input-group">
 
                 <label>New Password</label>
@@ -594,15 +548,6 @@
 
             </div>
 
-            <div class="input-group">
-
-                <label>Confirm Password</label>
-                <input
-                    type="password"
-                    id="confirmPassword"
-                    placeholder="Confirm Password">
-
-            </div>
 
             <button class="save-btn">
                 Save Changes
@@ -612,13 +557,6 @@
     </div>
 
 </section>
-        
-
-    </main>
-
-    
-
-</div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 

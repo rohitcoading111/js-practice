@@ -2,40 +2,24 @@ let userData = JSON.parse(localStorage.getItem("currentUser"))
 let welcome = document.querySelector("#welcomeText")
 const logout = document.querySelector(".primary-btn")
 const counters = document.querySelectorAll(".counter");
-const setting = document.querySelector(".setting")
 const balanceValue = document.querySelector("#balanceValue");
 const incomeValue = document.querySelector("#incomeValue");
 const expenseValue = document.querySelector("#expenseValue");
 const transactionCount = document.querySelector("#transactionCount");
-
-
-
-
-const dashboardPage = document.querySelector("#dashboardPage");
-const settingsPage = document.querySelector("#settingsPage");
-
-
+const dashboard = document.querySelector(".dashboard");
+const setting = document.querySelector(".setting");
+let profile = document.querySelector(".change")
+let secprofile = document.querySelector(".change2")
+let primarybtn = document.querySelector("primary-btn")
 
 const dashboardLink = document.querySelector("#dashboardLink");
 const settingsLink = document.querySelector("#settingsLink");
 
-
-
+const settingsPage = document.querySelector("#settingsPage");
+const dashboardPage = document.querySelector("#dashboardPage");
 const settingsForm = document.querySelector("#settingsForm");
 
-const settingsUsername = document.querySelector("#settingsUsername");
 
-const currentPassword = document.querySelector("#currentPassword");
-
-const newPassword = document.querySelector("#newPassword");
-
-const confirmPassword = document.querySelector("#confirmPassword");
-
-
-
-const profilePreview = document.querySelector("#profilePreview");
-
-const profileInput = document.querySelector("#profileInput");
 
 
 const saveBtn = document.querySelector(".save-btn");
@@ -46,6 +30,8 @@ let currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
 
 welcome.innerHTML =   ` Welcome Back 👋 mr ${ userData.username}`
+  profile.innerHTML =  `${ userData.username}`
+   secprofile.innerHTML =  `${ userData.username}`
 let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
 let editingTransaction = null;
 function updateDashboard() {
@@ -341,14 +327,10 @@ btn.style.transform="scale(1)";
 });
 
 document.querySelectorAll(".menu a").forEach(item=>{
-
 item.addEventListener("click",(e)=>{
-
 e.preventDefault();
-
 document.querySelector(".menu .active")
 .classList.remove("active");
-
 item.classList.add("active");
 
 });
@@ -583,6 +565,53 @@ editBtn.forEach(button => {
  })
 };
 
+
+let settingsUser = document.querySelector("#settingsUsername")
+let newpass = document.querySelector("#newPassword");
+settingsLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    dashboardPage.style.display = "none";
+    settingsPage.style.display = "block";
+
+    dashboardLink.classList.remove("active");
+    settingsLink.classList.add("active");
+console.log(dashboardLink);
+console.log(settingsLink);
+})
+
+settingsForm.addEventListener("submit",(e)=> {
+   e.preventDefault();
+   let settingUsers = settingsUser.value.trim();
+   let settingpass = newpass.value.trim();
+
+   if(settingUsers === "" || settingpass === "" ){
+    alert("please fill al empty fields")
+    return;
+   }
+
+   const user = users.find(user=> user.id === userData.id)
+
+   user.username = settingUsers;
+   user.password = settingpass;
+
+   localStorage.setItem("users",JSON.stringify(users))
+
+   userData.username = settingUsers;
+   userData.password = settingpass;
+
+   localStorage.setItem("currentUser",JSON.stringify(userData))
+   welcome.innerHTML =  ` Welcome Back 👋 mr ${ userData.username}`
+   profile.innerHTML =  `${ userData.username}`
+   secprofile.innerHTML =  `${ userData.username}`
+
+  console.log("clicked");
+  settingsPage.style.display = "none";
+  dashboardPage.style.display = "grid";
+  settingsLink.classList.remove("active");
+  dashboardLink.classList.add("active");
+})
+ 
+console.log(userData);
 
 
 renderTransactions();
