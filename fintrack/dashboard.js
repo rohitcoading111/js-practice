@@ -10,7 +10,7 @@ const dashboard = document.querySelector(".dashboard");
 const setting = document.querySelector(".setting");
 let profile = document.querySelector(".change")
 let secprofile = document.querySelector(".change2")
-let primarybtn = document.querySelector("primary-btn")
+let editbtn = document.querySelector("#edit-btn")
 
 const dashboardLink = document.querySelector("#dashboardLink");
 const settingsLink = document.querySelector("#settingsLink");
@@ -18,7 +18,6 @@ const settingsLink = document.querySelector("#settingsLink");
 const settingsPage = document.querySelector("#settingsPage");
 const dashboardPage = document.querySelector("#dashboardPage");
 const settingsForm = document.querySelector("#settingsForm");
-
 
 
 
@@ -575,8 +574,6 @@ settingsLink.addEventListener("click", (e) => {
 
     dashboardLink.classList.remove("active");
     settingsLink.classList.add("active");
-console.log(dashboardLink);
-console.log(settingsLink);
 })
 
 settingsForm.addEventListener("submit",(e)=> {
@@ -611,6 +608,15 @@ settingsForm.addEventListener("submit",(e)=> {
   dashboardLink.classList.add("active");
 })
  
+editbtn.addEventListener("click", () => {
+  console.log("clickinggg");
+ dashboardPage.style.display = "none";
+    settingsPage.style.display = "block";
+
+    dashboardLink.classList.remove("active");
+    settingsLink.classList.add("active");
+
+});
 console.log(userData);
 
 
