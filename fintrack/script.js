@@ -21,7 +21,7 @@ loginForm.addEventListener("submit",(e)=>{
         return;
     }
 
-    if(!findUser.password){
+    if(findUser.password !== password){
         alert("password not match")
         return;
     }
