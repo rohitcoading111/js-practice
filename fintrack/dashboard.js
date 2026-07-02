@@ -617,7 +617,16 @@ editbtn.addEventListener("click", () => {
     settingsLink.classList.add("active");
 
 });
-console.log(userData);
+
+backDashboardBtn.addEventListener("click", () => {
+
+    settingsPage.style.display = "none";
+    dashboardPage.style.display = "grid";
+
+    settingsLink.classList.remove("active");
+    dashboardLink.classList.add("active");
+
+});
 
 
 renderTransactions();
