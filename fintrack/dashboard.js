@@ -11,7 +11,7 @@ const setting = document.querySelector(".setting");
 let profile = document.querySelector(".change")
 let secprofile = document.querySelector(".change2")
 let editbtn = document.querySelector("#edit-btn")
-
+const searchInput = document.querySelector("#searchInput");
 const dashboardLink = document.querySelector("#dashboardLink");
 const settingsLink = document.querySelector("#settingsLink");
 
@@ -628,5 +628,21 @@ backDashboardBtn.addEventListener("click", () => {
 
 });
 
+searchInput.addEventListener("input", () => {
 
+    const searchValue = searchInput.value.toLowerCase().trim();
+
+    document.querySelectorAll(".transaction-row").forEach(row => {
+
+        const title = row.children[0].textContent.toLowerCase();
+
+        if (title === searchValue || title.includes(searchValue)) {
+            row.style.display = "";
+        } else {
+            row.style.display = "none";
+        }
+
+    });
+
+});
 renderTransactions();
