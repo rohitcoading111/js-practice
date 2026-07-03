@@ -1683,3 +1683,47 @@ border-color:#4F46E5;
 box-shadow:0 0 0 4px rgba(79,70,229,.15);
 
 }
+
+#resetDashboard{
+
+width:100%;
+
+margin-top:15px;
+
+padding:16px;
+
+border:none;
+
+border-radius:18px;
+
+background:linear-gradient(
+135deg,
+#EF4444,
+#F97316
+);
+
+color:white;
+
+font-weight:700;
+
+cursor:pointer;
+
+transition:.3s;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+gap:10px;
+
+}
+
+#resetDashboard:hover{
+
+transform:translateY(-5px);
+
+box-shadow:0 20px 35px rgba(239,68,68,.35);
+
+}

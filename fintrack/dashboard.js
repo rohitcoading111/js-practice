@@ -18,7 +18,7 @@ const currencySelect = document.querySelector("#currencySelect");
 const settingsPage = document.querySelector("#settingsPage");
 const dashboardPage = document.querySelector("#dashboardPage");
 const settingsForm = document.querySelector("#settingsForm");
-
+const resetDashboard = document.querySelector("#resetDashboard");
 
 
 const savedCurrency =
@@ -667,6 +667,30 @@ searchInput.addEventListener("input", () => {
         }
 
     });
+
+});
+
+resetDashboard.addEventListener("click", () => {
+
+    const confirmReset =
+    confirm("Are you sure? This will delete all transactions.");
+
+    if(!confirmReset){
+        return;
+    }
+
+    transactions = [];
+
+    localStorage.setItem(
+        "transactions",
+        JSON.stringify(transactions)
+    );
+
+    renderTransactions();
+    updateDashboard();
+    updateChart();
+
+    alert("Dashboard Reset Successfully");
 
 });
 renderTransactions();
