@@ -49,6 +49,7 @@ registerForm.addEventListener("submit",(e)=> {
   
   users.push(usersData);
   localStorage.setItem("users",JSON.stringify(users));
+  window.location.href = "dashboard.html"
 
   usernameInput.value = ""
   emailInput.value = ""
