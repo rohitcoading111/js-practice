@@ -14,11 +14,17 @@ let editbtn = document.querySelector("#edit-btn")
 const searchInput = document.querySelector("#searchInput");
 const dashboardLink = document.querySelector("#dashboardLink");
 const settingsLink = document.querySelector("#settingsLink");
-
+const currencySelect = document.querySelector("#currencySelect");
 const settingsPage = document.querySelector("#settingsPage");
 const dashboardPage = document.querySelector("#dashboardPage");
 const settingsForm = document.querySelector("#settingsForm");
 
+
+
+const savedCurrency =
+    localStorage.getItem("currency") || "INR";
+
+currencySelect.value = savedCurrency;
 
 
 const saveBtn = document.querySelector(".save-btn");
@@ -34,6 +40,11 @@ welcome.innerHTML =   ` Welcome Back 👋 mr ${ userData.username}`
 let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
 let editingTransaction = null;
 function updateDashboard() {
+
+  
+    const currency =
+    localStorage.getItem("currency") || "₹";
+
 
     let income = 0;
     let expense = 0;
@@ -52,9 +63,13 @@ function updateDashboard() {
 
     });
 
-    balanceValue.innerHTML = `₹${(income - expense).toLocaleString()}`;
-    incomeValue.innerHTML = `₹${income.toLocaleString()}`;
-    expenseValue.innerHTML = `₹${expense.toLocaleString()}`;transactionCount.innerHTML = transactions.length;
+    const balance = income - expense;
+
+balanceValue.innerHTML = `${currency}${balance.toLocaleString()}`;
+
+incomeValue.innerHTML = `${currency}${income.toLocaleString()}`;
+
+expenseValue.innerHTML = `${currency}${expense.toLocaleString()}`;
 
 }
 
@@ -469,6 +484,9 @@ function renderTransactions() {
     transactions = JSON.parse(localStorage.getItem("transactions")) || [];
 
     transactionList.innerHTML = "";
+       const currency =
+localStorage.getItem("currency") || "₹";
+
 
     if (transactions.length === 0) {
         transactionList.innerHTML = `
@@ -493,8 +511,7 @@ function renderTransactions() {
                 <td>${item.title}</td>
                 <td>${item.date}</td>
                 <td>${item.category}</td>
-                <td>₹${item.amount.toLocaleString()}</td>
-
+                 <td>${currency}${item.amount}</td>
                 <td>
                     <span class="${item.type}">
                         ${item.type}
@@ -601,7 +618,14 @@ settingsForm.addEventListener("submit",(e)=> {
    profile.innerHTML =  `${ userData.username}`
    secprofile.innerHTML =  `${ userData.username}`
 
-  console.log("clicked");
+   localStorage.setItem(
+    "currency",
+    currencySelect.value
+);
+
+updateDashboard();
+renderTransactions();
+
   settingsPage.style.display = "none";
   dashboardPage.style.display = "grid";
   settingsLink.classList.remove("active");
