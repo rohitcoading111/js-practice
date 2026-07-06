@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <main class="dashboard">
+<header class="animate">
+
+    <div class="logo">
+        🚀 Productivity Dashboard
+    </div>
+
+    <nav>
+
+        <a href="#">Home</a>
+        <a href="#">Tasks</a>
+        <a href="#">Planner</a>
+        <a href="#">Weather</a>
+
+    </nav>
+
+    <button id="themeBtn">🌙</button>
+
+</header>
+        
+<section class="hero animate">
+
+    <div class="left">
+
+        <h1>Good Morning, Rohit 👋</h1>
+
+        <p>
+            Stay focused, stay consistent and make today productive.
+        </p>
+
+        <button>Start Your Day</button>
+
+    </div>
+
+    <div class="right">
+
+        <div class="timeCard">
+
+            <h2 id="time">
+                10:25 AM
+            </h2>
+
+            <p id="date">
+                Monday, July 6
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+    <section class="dashboard-overview">
+
+        <div class="heading">
+
+            <h2>📊 Dashboard Overview</h2>
+
+            <p>Your productivity at a glance</p>
+
+        </div>
+
+        <div class="stats">
+
+            <div class="card">
+                <span>📋</span>
+                <h1 id="totalTask">0</h1>
+                <p>Total Tasks</p>
+            </div>
+
+            <div class="card">
+                <span>✅</span>
+                <h1 id="completedTask">0</h1>
+                <p>Completed</p>
+            </div>
+
+            <div class="card">
+                <span>⏳</span>
+                <h1 id="pendingTask">0</h1>
+                <p>Pending</p>
+            </div>
+
+            <div class="card">
+                <span>🎯</span>
+                <h1 id="focusTime">0h</h1>
+                <p>Focus Time</p>
+            </div>
+
+        </div>
+
+    </section>
+
+  
+<section class="todo animate">
+
+    <div class="todo-header">
+
+        <h2>📝 Todo List</h2>
+
+        <button id="addTaskBtn">+ Add Task</button>
+
+    </div>
+
+    <div class="todo-input">
+
+        <input
+            type="text"
+            id="taskInput"
+            placeholder="Enter your task..."
+        >
+
+    </div>
+
+    <div class="task-container">
+
+        <!-- Task Card -->
+
+        <div class="task-card">
+
+            <div>
+
+                <h3>Learn JavaScript</h3>
+
+                <p>Today 8:00 PM</p>
+
+            </div>
+
+            <div class="task-actions">
+
+                <button>✔</button>
+
+                <button>🗑</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="planner animate">
+
+    <div class="planner-header">
+
+        <h2>📅 Daily Planner</h2>
+
+        <button id="savePlan">Save Plan</button>
+
+    </div>
+
+    <div class="planner-container">
+
+        <div class="planner-row">
+
+            <span>08:00 AM</span>
+
+            <input type="text" placeholder="Morning Task">
+
+        </div>
+
+        <div class="planner-row">
+
+            <span>11:00 AM</span>
+
+            <input type="text" placeholder="Work / Study">
+
+        </div>
+
+        <div class="planner-row">
+
+            <span>02:00 PM</span>
+
+            <input type="text" placeholder="Lunch / Break">
+
+        </div>
+
+        <div class="planner-row">
+
+            <span>05:00 PM</span>
+
+            <input type="text" placeholder="Evening Task">
+
+        </div>
+
+        <div class="planner-row">
+
+            <span>08:00 PM</span>
+
+            <input type="text" placeholder="Night Task">
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="weather animate">
+
+    <div class="weather-header">
+
+        <h2>🌤 Weather</h2>
+
+        <button id="refreshWeather">Refresh</button>
+
+    </div>
+
+    <div class="weather-card">
+
+        <div class="weather-top">
+
+            <h1 id="temperature">28°C</h1>
+
+            <img src="https://cdn-icons-png.flaticon.com/512/869/869869.png"
+                alt="weather">
+
+        </div>
+
+        <div class="weather-info">
+
+            <h3 id="city">Khatima</h3>
+
+            <p id="condition">Partly Cloudy</p>
+
+        </div>
+
+        <div class="weather-details">
+
+            <div>
+                <span>💧</span>
+                <p>Humidity</p>
+                <h4 id="humidity">65%</h4>
+            </div>
+
+            <div>
+                <span>💨</span>
+                <p>Wind</p>
+                <h4 id="wind">12 km/h</h4>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<section class="pomodoro animate">
+
+    <div class="pomodoro-header">
+
+        <h2>⏱ Pomodoro Timer</h2>
+
+    </div>
+
+    <div class="timer-container">
+
+        <div class="timer-circle">
+
+            <h1 id="timer">25:00</h1>
+
+            <p>Focus Time</p>
+
+        </div>
+
+    </div>
+
+    <div class="timer-buttons">
+
+        <button id="startBtn">▶ Start</button>
+
+        <button id="pauseBtn">⏸ Pause</button>
+
+        <button id="resetBtn">🔄 Reset</button>
+
+    </div>
+
+</section>
+
+
+
+<section class="quote animate">
+
+    <div class="quote-header">
+
+        <h2>💬 Daily Motivation</h2>
+
+        <button id="newQuote">New Quote</button>
+
+    </div>
+
+    <div class="quote-card">
+
+        <span class="quote-icon">❝</span>
+
+        <p id="quoteText">
+            Success doesn't come from what you do occasionally. It comes from what you do consistently.
+        </p>
+
+        <h4 id="quoteAuthor">
+            - Marie Forleo
+        </h4>
+
+    </div>
+
+</section>
+
+
+
+<section class="goals animate">
+
+    <div class="goals-header">
+
+        <h2>🎯 Daily Goals</h2>
+
+        <button id="addGoalBtn">+ Add Goal</button>
+
+    </div>
+
+    <div class="goal-input">
+
+        <input
+            type="text"
+            id="goalInput"
+            placeholder="Enter your goal..."
+        >
+
+    </div>
+
+    <div class="goal-progress">
+
+        <div class="progress-bar">
+
+            <div class="progress-fill"></div>
+
+        </div>
+
+        <p>0% Completed</p>
+
+    </div>
+
+    <div class="goal-list">
+
+        <div class="goal-item">
+
+            <span>📖 Learn JavaScript</span>
+
+            <button>✔</button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="calendar animate">
+
+    <div class="calendar-header">
+
+        <h2>📅 Calendar</h2>
+
+        <button>July 2026</button>
+
+    </div>
+
+    <div class="calendar-grid">
+
+        <span>Sun</span>
+        <span>Mon</span>
+        <span>Tue</span>
+        <span>Wed</span>
+        <span>Thu</span>
+        <span>Fri</span>
+        <span>Sat</span>
+
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div class="active">4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+
+    </div>
+
+</section>
+
+<section class="chart animate">
+
+    <div class="chart-header">
+
+        <h2>📈 Weekly Progress</h2>
+
+    </div>
+
+    <canvas id="weeklyChart"></canvas>
+
+</section>
+
+<footer >
+
+    <h3>🚀 Productivity Dashboard</h3>
+
+    <p>Made with ❤️ by Rohit</p>
+
+</footer>
+</main>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>
