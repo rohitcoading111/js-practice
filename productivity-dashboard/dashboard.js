@@ -1,3 +1,4 @@
+function animation(){
 const cards = document.querySelectorAll(".animate");
 
 window.addEventListener("load", () => {
@@ -48,3 +49,46 @@ document.addEventListener("mousemove", (e) => {
     hero.style.transform = `rotateY(${x}deg) rotateX(${-y}deg)`;
 
 });
+}
+
+animation();
+
+const time = document.getElementById("time");
+const date = document.getElementById("date");
+const greeting = document.getElementById("greeting");
+
+function updateDateTime(){
+
+    const now = new Date();
+
+   
+    time.textContent = now.toLocaleTimeString([],{
+        hour:"2-digit",
+        minute:"2-digit"
+    });
+
+   
+    date.textContent = now.toLocaleDateString("en-IN",{
+        weekday:"long",
+        day:"numeric",
+        month:"long",
+        year:"numeric"
+    });
+
+    let hour = now.getHours();
+
+    if(hour < 12){
+        greeting.textContent = "Good Morning, Rohit 👋";
+    }
+    else if(hour < 18){
+        greeting.textContent = "Good Afternoon, Rohit ☀️";
+    }
+    else{
+        greeting.textContent = "Good Evening, Rohit 🌙";
+    }
+
+}
+
+updateDateTime();
+
+setInterval(updateDateTime,1000);
