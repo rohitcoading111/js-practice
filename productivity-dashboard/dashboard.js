@@ -56,6 +56,7 @@ animation();
 const time = document.getElementById("time");
 const date = document.getElementById("date");
 const greeting = document.getElementById("greeting");
+let editTaskId = null;
 
 function updateDateTime(){
 
@@ -93,7 +94,7 @@ setInterval(updateDateTime,1000);
 
 
 let tasks = []
-console.log(tasks);
+
 
 
 const taskInput = document.getElementById("taskInput");
@@ -107,7 +108,31 @@ addTaskBtn.addEventListener("click",()=>{
     const time = taskTime.value.trim();
     let id =  Date.now();
 
-   if (task === "" ){
+    if (task === "") {
+    alert("Your field has been empty");
+    return;
+}
+
+if(editTaskId !== null){
+
+const updatedTask = tasks.find((task)=>{
+    return task.id === editTaskId;
+});
+
+updatedTask.task = taskInput.value;
+updatedTask.time = taskTime.value;
+editTaskId = null;
+addTaskBtn.textContent = "+ Add Task";
+taskInput.value = "";
+taskTime.value = "";
+localStorage.setItem("tasks", JSON.stringify(tasks));
+renderTasks();
+updateDashboard();
+
+
+
+}else{
+if (task === "" ){
     alert("your field has been empty")
     return;
    }    
@@ -119,17 +144,77 @@ addTaskBtn.addEventListener("click",()=>{
    }
    tasks.push(taskObj);
    localStorage.setItem("tasks",JSON.stringify(tasks));
-   
+   taskInput.value = "";
+   taskTime.value = "";
    renderTasks()
+   updateDashboard();
+
+}
+
 });
 
 function addTask(){
     const task = taskInput.value.trim();
+    updateDashboard()
 }
 
 function renderTasks(){
      taskContainer.innerHTML = "";
      tasks.forEach((task)=>{
+     const taskActions = document.createElement("div");
+     taskActions.classList.add("task-actions");
+
+const completeBtn = document.createElement("button");
+completeBtn.classList.add("complete-btn");
+completeBtn.textContent = "✔";
+completeBtn.dataset.id = task.id;
+completeBtn.addEventListener("click", () => {
+   const completeTask = tasks.find((task)=>{
+     return Number(completeBtn.dataset.id) === task.id
+   })
+  completeTask.completed = !completeTask.completed;
+  
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    renderTasks();
+   updateDashboard();
+});
+
+const editBtn = document.createElement("button");
+editBtn.classList.add("edit-btn");
+editBtn.dataset.id = task.id;
+editBtn.textContent = "✏️";
+
+editBtn.addEventListener("click",()=>{
+      const edited = tasks.find((task)=>{
+          return Number(editBtn.dataset.id) === task.id
+      })
+taskInput.value = edited.task;
+taskTime.value = edited.time;
+addTaskBtn.textContent = "Update Task";
+editTaskId = edited.id;
+})
+
+const deleteBtn = document.createElement("button");
+deleteBtn.dataset.id = task.id;
+deleteBtn.classList.add("delete-btn");
+deleteBtn.textContent = "🗑";
+
+
+deleteBtn.addEventListener("click",function(){
+    const index = tasks.findIndex((task)=>{
+   return Number(deleteBtn.dataset.id) === task.id
+   });
+   tasks.splice(index,1)
+     localStorage.setItem("tasks", JSON.stringify(tasks));
+    renderTasks();
+   updateDashboard();
+})
+taskActions.append(
+    completeBtn,
+    editBtn,
+    deleteBtn
+);
+
      const h3 = document.createElement("h3");
      const p = document.createElement("p");
      h3.textContent = task.task
@@ -138,8 +223,28 @@ function renderTasks(){
     const taskInfo = document.createElement("div");
     taskInfo.classList.add("task-info");
     taskCard.classList.add("task-card");
-    taskInfo.append( h3,p);
+    taskInfo.append( h3,p,taskActions);
     taskCard.append(taskInfo)
     taskContainer.append(taskCard);
 });
+}
+
+function updateDashboard(){
+const totalTask = document.getElementById("totalTask");
+const completedTask = document.getElementById("completedTask");
+const pendingTask = document.getElementById("pendingTask");
+const focusTime = document.getElementById("focusTime");
+
+totalTask.textContent = tasks.length;
+completedTask.textContent =
+tasks.filter((task)=>{
+    return task.completed;
+}).length;
+
+
+pendingTask.textContent =
+tasks.filter((task)=>{
+    return totalTask-completedTask;
+}).length;
+
 }
