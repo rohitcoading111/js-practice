@@ -88,7 +88,58 @@ function updateDateTime(){
     }
 
 }
-
 updateDateTime();
-
 setInterval(updateDateTime,1000);
+
+
+let tasks = []
+console.log(tasks);
+
+
+const taskInput = document.getElementById("taskInput");
+const addTaskBtn = document.getElementById("addTaskBtn");
+const taskContainer = document.querySelector(".task-container");
+const taskTime = document.getElementById("taskTime");
+
+
+addTaskBtn.addEventListener("click",()=>{
+    const task = taskInput.value.trim();
+    const time = taskTime.value.trim();
+    let id =  Date.now();
+
+   if (task === "" ){
+    alert("your field has been empty")
+    return;
+   }    
+   const taskObj = {
+    task,
+    time,
+    id,
+    completeBtns:false,
+   }
+   tasks.push(taskObj);
+   localStorage.setItem("tasks",JSON.stringify(tasks));
+   
+   renderTasks()
+});
+
+function addTask(){
+    const task = taskInput.value.trim();
+}
+
+function renderTasks(){
+     taskContainer.innerHTML = "";
+     tasks.forEach((task)=>{
+     const h3 = document.createElement("h3");
+     const p = document.createElement("p");
+     h3.textContent = task.task
+     p.textContent = task.time
+    const taskCard = document.createElement("div");
+    const taskInfo = document.createElement("div");
+    taskInfo.classList.add("task-info");
+    taskCard.classList.add("task-card");
+    taskInfo.append( h3,p);
+    taskCard.append(taskInfo)
+    taskContainer.append(taskCard);
+});
+}
