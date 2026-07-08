@@ -320,7 +320,6 @@ else{
 }
 })
 
-
 function renderPlanner(){
        const rows = document.querySelectorAll(".planner-row")
       plannerCardContainer.innerHTML = "";
@@ -383,6 +382,56 @@ savePlanBtn.textContent = "Update Plan";
     });
 }
 
+
+const temperature = document.getElementById("temperature");
+const city = document.getElementById("city");
+const condition = document.getElementById("condition");
+const humidity = document.getElementById("humidity");
+const wind = document.getElementById("wind");
+const refreshWeatherBtn = document.getElementById("refreshWeather");
+async function fetchWeather() {
+
+    const url = "https://api.open-meteo.com/v1/forecast?latitude=28.92&longitude=79.97&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code";
+
+    const response = await fetch(url);
+    const data = await response.json();
+
+
+    temperature.textContent = `${data.current.temperature_2m}°C`;
+    humidity.textContent = `${data.current.relative_humidity_2m}%`;
+    wind.textContent = `${data.current.wind_speed_10m} km/h`;
+    city.textContent = "Khatima";
+    const code = data.current.weather_code;
+
+    if (code === 0) {
+        condition.textContent = "Clear Sky";
+    }
+    else if (code <= 3) {
+        condition.textContent = "Partly Cloudy";
+    }
+    else if (code <= 48) {
+        condition.textContent = "Fog";
+    }
+    else if (code <= 67) {
+        condition.textContent = "Rain";
+    }
+    else if (code <= 77) {
+        condition.textContent = "Snow";
+    }
+    else if (code <= 99) {
+        condition.textContent = "Thunderstorm";
+    }
+
+}
+
+refreshWeatherBtn.addEventListener("click", () => {
+    fetchWeather();
+});
+setInterval(() => {
+    fetchWeather();
+}, 600000);
+
+fetchWeather()
 
 renderTasks();
 renderPlanner();
