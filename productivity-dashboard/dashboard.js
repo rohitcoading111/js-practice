@@ -257,18 +257,18 @@ tasks.filter((task)=>{
 
 }
 
-
-const savePlanBtn = document.getElementById("savePlan");
 const newPlannerRowBtn = document.getElementById("newPlannerRow");
 const plannerContainer = document.querySelector(".planner-container");
 const plannerTimeInputs = document.querySelectorAll(".planner-time");
 const plannerTaskInputs = document.querySelectorAll(".planner-input");
+const savePlanBtn = document.getElementById("savePlan");
+const plannerCardContainer = document.querySelector(".planner-card-container");
+const plannerHistory = document.querySelector(".planner-history");
 
 const planerData = JSON.parse(localStorage.getItem("planerData")) || [];
 savePlanBtn.addEventListener("click",()=>{
-    console.log("clicked");
     const rows = document.querySelectorAll(".planner-row")
-     const planerData = []
+    planerData.length = 0;
     rows.forEach((row)=>{
       const timeInput = row.querySelector(".planner-time");
       const activityInput = row.querySelector(".planner-input")
@@ -277,9 +277,11 @@ savePlanBtn.addEventListener("click",()=>{
       const planerObj = {
         time,
         activity,
+        id:Date.now() + Math.random()
       }
       planerData.push(planerObj)
     })
+    renderPlanner();
     localStorage.setItem("planerData",JSON.stringify(planerData));
 })
 
@@ -293,7 +295,67 @@ planerData.forEach((plan,index)=>{
     activityInput.value = plan.activity
 })
 
+console.log(planerData);
+
+
+function renderPlanner(){
+       const rows = document.querySelectorAll(".planner-row")
+      plannerCardContainer.innerHTML = "";
+
+    planerData.forEach((plan)=>{
+        const plannerActions = document.createElement("div");
+        const plannerCard = document.createElement("div");
+        const plannerInfo = document.createElement("div");
+
+        const h4 = document.createElement("h4");
+        const p = document.createElement("p");
+
+        const editBtn = document.createElement("button");
+        const deleteBtn = document.createElement("button");
+
+        plannerCard.classList.add("planner-card");
+        plannerInfo.classList.add("planner-info");
+        plannerActions.classList.add("planner-actions");
+
+        h4.textContent = plan.activity;
+        p.textContent = plan.time;
+       
+         editBtn.classList.add("edit-btn");
+         editBtn.dataset.id = plan.id;
+         editBtn.textContent = "✏️";
+
+         deleteBtn.classList.add("delete-btn");
+         deleteBtn.dataset.id = plan.id;
+         deleteBtn.textContent = "🗑";
+
+         plannerActions.append(editBtn,deleteBtn);
+         plannerInfo.append(h4,p)
+         plannerCard.append(plannerInfo,plannerActions);
+         plannerCardContainer.append(plannerCard);
+
+        deleteBtn.addEventListener("click",()=>{
+            const index = planerData.findIndex((plan)=>{
+          return Number(deleteBtn.dataset.id) === plan.id;
+            });
+           planerData.splice(index,1)
+           localStorage.setItem( "planerData", JSON.stringify(planerData));
+           renderPlanner()
+        })
+
+
+          localStorage.setItem("planerData", JSON.stringify(planerData));
+          rows.forEach((row)=>{
+        row.querySelector(".planner-time").value = "";
+        row.querySelector(".planner-input").value = "";
+
+    });
+ 
+
+    });
+
+}
 
 
 renderTasks();
+ renderPlanner();
 updateDashboard();
