@@ -93,7 +93,8 @@ updateDateTime();
 setInterval(updateDateTime,1000);
 
 
-let tasks = []
+let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+console.log(tasks);
 
 
 
@@ -119,8 +120,8 @@ const updatedTask = tasks.find((task)=>{
     return task.id === editTaskId;
 });
 
-updatedTask.task = taskInput.value;
-updatedTask.time = taskTime.value;
+updatedTask.task = task;
+updatedTask.time = time;
 editTaskId = null;
 addTaskBtn.textContent = "+ Add Task";
 taskInput.value = "";
@@ -172,9 +173,9 @@ completeBtn.addEventListener("click", () => {
    const completeTask = tasks.find((task)=>{
      return Number(completeBtn.dataset.id) === task.id
    })
-  completeTask.completed = !completeTask.completed;
-  
+  completeTask.completeBtns = !completeTask.completeBtns;
     localStorage.setItem("tasks", JSON.stringify(tasks));
+    
     renderTasks();
    updateDashboard();
 });
@@ -205,10 +206,18 @@ deleteBtn.addEventListener("click",function(){
    return Number(deleteBtn.dataset.id) === task.id
    });
    tasks.splice(index,1)
-     localStorage.setItem("tasks", JSON.stringify(tasks));
+    localStorage.setItem("tasks", JSON.stringify(tasks));
     renderTasks();
    updateDashboard();
 })
+ const taskCard = document.createElement("div");
+if(task.completeBtns){
+
+    taskCard.classList.add("completed");
+
+    completeBtn.classList.add("completed");
+
+}
 taskActions.append(
     completeBtn,
     editBtn,
@@ -219,7 +228,6 @@ taskActions.append(
      const p = document.createElement("p");
      h3.textContent = task.task
      p.textContent = task.time
-    const taskCard = document.createElement("div");
     const taskInfo = document.createElement("div");
     taskInfo.classList.add("task-info");
     taskCard.classList.add("task-card");
@@ -238,7 +246,7 @@ const focusTime = document.getElementById("focusTime");
 totalTask.textContent = tasks.length;
 completedTask.textContent =
 tasks.filter((task)=>{
-    return task.completed;
+    return task.completeBtns;
 }).length;
 
 
@@ -248,3 +256,44 @@ tasks.filter((task)=>{
 }).length;
 
 }
+
+
+const savePlanBtn = document.getElementById("savePlan");
+const newPlannerRowBtn = document.getElementById("newPlannerRow");
+const plannerContainer = document.querySelector(".planner-container");
+const plannerTimeInputs = document.querySelectorAll(".planner-time");
+const plannerTaskInputs = document.querySelectorAll(".planner-input");
+
+const planerData = JSON.parse(localStorage.getItem("planerData")) || [];
+savePlanBtn.addEventListener("click",()=>{
+    console.log("clicked");
+    const rows = document.querySelectorAll(".planner-row")
+     const planerData = []
+    rows.forEach((row)=>{
+      const timeInput = row.querySelector(".planner-time");
+      const activityInput = row.querySelector(".planner-input")
+      const time = timeInput.value;
+      const activity = activityInput.value;
+      const planerObj = {
+        time,
+        activity,
+      }
+      planerData.push(planerObj)
+    })
+    localStorage.setItem("planerData",JSON.stringify(planerData));
+})
+
+
+planerData.forEach((plan,index)=>{
+    const rows = document.querySelectorAll(".planner-row")
+    const row = rows[index]
+      const timeInput = row.querySelector(".planner-time");
+      const activityInput = row.querySelector(".planner-input")
+    timeInput.value = plan.time
+    activityInput.value = plan.activity
+})
+
+
+
+renderTasks();
+updateDashboard();
