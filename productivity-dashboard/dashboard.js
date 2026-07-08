@@ -57,7 +57,7 @@ const time = document.getElementById("time");
 const date = document.getElementById("date");
 const greeting = document.getElementById("greeting");
 let editTaskId = null;
-
+   const rows = document.querySelectorAll(".planner-row")
 function updateDateTime(){
 
     const now = new Date();
@@ -266,10 +266,39 @@ const plannerCardContainer = document.querySelector(".planner-card-container");
 const plannerHistory = document.querySelector(".planner-history");
 
 const planerData = JSON.parse(localStorage.getItem("planerData")) || [];
+
+let editPlanId = null;
 savePlanBtn.addEventListener("click",()=>{
+  if(editPlanId !== null){
+    const rows = document.querySelectorAll(".planner-row");
+    const updatedPlan = planerData.find((plan) => {
+      return plan.id === editPlanId;
+    })
+        const row = rows[updatedPlan.rowIndex];
+        const timeInput = row.querySelector(".planner-time");
+        updatedPlan.time = timeInput.value
+        const activityInput = row.querySelector(".planner-input");
+         updatedPlan.activity = activityInput.value;
+        localStorage.setItem("planerData", JSON.stringify(planerData));
+
+  rows.forEach((row, index) => {
+    row.querySelector(".planner-time").value = "";
+    row.querySelector(".planner-input").value = "";
+});
+
+renderPlanner();
+
+editPlanId = null;
+savePlanBtn.textContent = "Save Plan";
+
+return;
+
+  
+}
+else{
     const rows = document.querySelectorAll(".planner-row")
     planerData.length = 0;
-    rows.forEach((row)=>{
+    rows.forEach((row,index)=>{
       const timeInput = row.querySelector(".planner-time");
       const activityInput = row.querySelector(".planner-input")
       const time = timeInput.value;
@@ -277,32 +306,26 @@ savePlanBtn.addEventListener("click",()=>{
       const planerObj = {
         time,
         activity,
-        id:Date.now() + Math.random()
+        id:Date.now() + Math.random(),
+        rowIndex:index
       }
       planerData.push(planerObj)
     })
     renderPlanner();
     localStorage.setItem("planerData",JSON.stringify(planerData));
+      rows.forEach((row,)=>{
+        row.querySelector(".planner-time").value = "";
+        row.querySelector(".planner-input").value = "";
+    });
+}
 })
-
-
-planerData.forEach((plan,index)=>{
-    const rows = document.querySelectorAll(".planner-row")
-    const row = rows[index]
-      const timeInput = row.querySelector(".planner-time");
-      const activityInput = row.querySelector(".planner-input")
-    timeInput.value = plan.time
-    activityInput.value = plan.activity
-})
-
-console.log(planerData);
 
 
 function renderPlanner(){
        const rows = document.querySelectorAll(".planner-row")
       plannerCardContainer.innerHTML = "";
 
-    planerData.forEach((plan)=>{
+      planerData.forEach((plan)=>{
         const plannerActions = document.createElement("div");
         const plannerCard = document.createElement("div");
         const plannerInfo = document.createElement("div");
@@ -324,6 +347,20 @@ function renderPlanner(){
          editBtn.dataset.id = plan.id;
          editBtn.textContent = "✏️";
 
+         editBtn.addEventListener("click",()=>{
+            const rows = document.querySelectorAll(".planner-row");
+             const editedPlan = planerData.find((plan)=>{
+              return Number(editBtn.dataset.id) === plan.id;
+          }); 
+const row = rows[editedPlan.rowIndex];
+const timeInput = row.querySelector(".planner-time");
+const activityInput = row.querySelector(".planner-input");
+timeInput.value = editedPlan.time;
+activityInput.value = editedPlan.activity;
+editPlanId = editedPlan.id;
+savePlanBtn.textContent = "Update Plan";
+
+         })
          deleteBtn.classList.add("delete-btn");
          deleteBtn.dataset.id = plan.id;
          deleteBtn.textContent = "🗑";
@@ -337,25 +374,16 @@ function renderPlanner(){
             const index = planerData.findIndex((plan)=>{
           return Number(deleteBtn.dataset.id) === plan.id;
             });
-           planerData.splice(index,1)
-           localStorage.setItem( "planerData", JSON.stringify(planerData));
-           renderPlanner()
+          if (index !== -1) {
+    planerData.splice(index, 1);
+    localStorage.setItem("planerData", JSON.stringify(planerData));
+    renderPlanner();
+}
         })
-
-
-          localStorage.setItem("planerData", JSON.stringify(planerData));
-          rows.forEach((row)=>{
-        row.querySelector(".planner-time").value = "";
-        row.querySelector(".planner-input").value = "";
-
     });
- 
-
-    });
-
 }
 
 
 renderTasks();
- renderPlanner();
+renderPlanner();
 updateDashboard();
