@@ -389,9 +389,38 @@ const condition = document.getElementById("condition");
 const humidity = document.getElementById("humidity");
 const wind = document.getElementById("wind");
 const refreshWeatherBtn = document.getElementById("refreshWeather");
-async function fetchWeather() {
+const cityInput = document.getElementById("cityInput");
 
-    const url = "https://api.open-meteo.com/v1/forecast?latitude=28.92&longitude=79.97&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code";
+
+const searchWeatherBtn = document.getElementById("searchWeather");
+searchWeatherBtn.addEventListener("click",()=>{
+   const cityName = cityInput.value.trim();
+   searchCity(cityName);
+   cityInput.value = ""
+});
+
+
+async function searchCity(cityName){
+
+    const geoUrl = `https://geocoding-api.open-meteo.com/v1/search?name=${cityName}&count=1`;
+
+    const response = await fetch(geoUrl);
+    const data = await response.json();
+
+     const place = data.results[0];
+
+    fetchWeather(
+        place.latitude,
+        place.longitude,
+        place.name
+    );
+
+    localStorage.setItem("lastCity", cityName);
+
+}
+
+async function fetchWeather(latitude, longitude, cityName){
+const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code`;
 
     const response = await fetch(url);
     const data = await response.json();
@@ -400,7 +429,7 @@ async function fetchWeather() {
     temperature.textContent = `${data.current.temperature_2m}°C`;
     humidity.textContent = `${data.current.relative_humidity_2m}%`;
     wind.textContent = `${data.current.wind_speed_10m} km/h`;
-    city.textContent = "Khatima";
+    city.textContent = cityName;
     const code = data.current.weather_code;
 
     if (code === 0) {
@@ -425,13 +454,23 @@ async function fetchWeather() {
 }
 
 refreshWeatherBtn.addEventListener("click", () => {
-    fetchWeather();
-});
-setInterval(() => {
-    fetchWeather();
-}, 600000);
 
-fetchWeather()
+    const lastCity = localStorage.getItem("lastCity");
+
+    if(lastCity){
+        searchCity(lastCity);
+    }
+
+});
+
+const lastCity = localStorage.getItem("lastCity");
+
+if(lastCity){
+    searchCity(lastCity);
+}
+else{
+    searchCity("Khatima");
+}
 
 renderTasks();
 renderPlanner();
