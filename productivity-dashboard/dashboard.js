@@ -472,6 +472,13 @@ else{
     searchCity("Khatima");
 }
 
+const timerDisplay = document.getElementById("timerDisplay");
+const startTimerBtn = document.getElementById("startTimer");
+const pauseTimerBtn = document.getElementById("pauseTimer");
+const resetTimerBtn = document.getElementById("resetTimer");
+
+
+
 renderTasks();
 renderPlanner();
 updateDashboard();
