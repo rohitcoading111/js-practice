@@ -496,7 +496,6 @@ startTimerBtn.addEventListener("click",()=>{
       timerId =  setInterval(() => {
       totalSeconds--;
       updateTimer()
-      timerDisplay.textContent = `${minutes}:${seconds}`;
    }, 1000);
   }
  
@@ -505,7 +504,7 @@ startTimerBtn.addEventListener("click",()=>{
 pauseTimerBtn.addEventListener("click",()=>{
    if(timerId){
      pauseTimerBtn.textContent = "▶ Resume"
-    clearInterval(timerId)
+     clearInterval(timerId)
      timerId = null
      return;
    }
@@ -527,6 +526,25 @@ resetTimerBtn.addEventListener("click",()=>{
     updateTimer()
 })
 
+const quoteText = document.getElementById("quoteText");
+const quoteAuthor = document.getElementById("quoteAuthor");
+const newQuoteBtn = document.getElementById("newQuote");
+
+async function fetchQuote(){
+      const response = await fetch("https://dummyjson.com/quotes/random");
+       const data = await response.json();
+       console.log(data);
+      quoteText.textContent = data.quote;
+      quoteAuthor.textContent = data.author;
+}
+
+newQuoteBtn.addEventListener("click",()=>{
+    fetchQuote()
+})
+
+
+
+fetchQuote()
 renderTasks();
 renderPlanner();
 updateDashboard();
