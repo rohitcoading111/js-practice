@@ -605,7 +605,8 @@ function renderGoals(){
            goal.completed = !goal.completed
            
         localStorage.setItem("goals", JSON.stringify(goals));
-         renderGoals();
+          renderGoals();
+          updateProgress()
         })
 
         if(goal.completed){
@@ -634,6 +635,91 @@ function renderGoals(){
     });
 
 }
+
+function updateProgress(){
+
+const totalGoals = goals.length;
+const completedGoals = goals.filter((goal)=>{
+    return goal.completed;
+});
+
+let progressbar = Math.round(
+    (completedGoals.length / totalGoals) * 100
+);
+if(totalGoals === 0){
+
+    progressFill.style.width = "0%";
+    progressText.textContent = "0% Completed";
+    return;
+}
+progressFill.style.width = `${progressbar}%`
+progressText.textContent = `${progressbar}% Completed`;
+
+}
+
+
+const currentMonthBtn = document.getElementById("currentMonthBtn");
+const calendarGrid = document.getElementById("calendarGrid");
+
+const today = new Date();
+
+const currentDate = today.getDate();
+const currentMonth = today.getMonth();
+const currentYear = today.getFullYear();
+
+const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+];
+
+currentMonthBtn.textContent =
+`${months[currentMonth]} ${currentYear}`;
+
+const daysInMonth = new Date(
+    currentYear,
+    currentMonth + 1,
+    0
+).getDate();
+
+const firstDay = new Date(
+    currentYear,
+    currentMonth,
+    1
+).getDay();
+
+for(let i = 0; i < firstDay; i++){
+
+    const empty = document.createElement("div");
+
+    empty.classList.add("empty");
+
+    calendarGrid.append(empty);
+
+}
+
+for(let i = 1; i <= daysInMonth; i++){
+    const day = document.createElement("div");
+    day.textContent = i;
+    if(i === currentDate){
+
+        day.classList.add("active");
+
+    }
+    calendarGrid.append(day);
+
+}
+
+
 
 
 
