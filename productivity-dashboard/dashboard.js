@@ -91,11 +91,45 @@ function updateDateTime(){
 }
 updateDateTime();
 setInterval(updateDateTime,1000);
+const themeBtn = document.getElementById("themeBtn");
 
+const savedTheme = localStorage.getItem("theme");
+
+if(savedTheme === "light"){
+
+    document.body.classList.add("light-theme");
+
+    themeBtn.textContent = "☀️";
+
+}
+else{
+
+    themeBtn.textContent = "🌙";
+
+}
+
+themeBtn.addEventListener("click",()=>{
+
+    document.body.classList.toggle("light-theme");
+
+    if(document.body.classList.contains("light-theme")){
+
+        localStorage.setItem("theme","light");
+
+        themeBtn.textContent = "☀️";
+
+    }
+    else{
+
+        localStorage.setItem("theme","dark");
+
+        themeBtn.textContent = "🌙";
+
+    }
+
+});
 
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-console.log(tasks);
-
 
 
 const taskInput = document.getElementById("taskInput");
@@ -491,13 +525,35 @@ timerDisplay.textContent = `${minutes.toLocaleString().padStart(2,"0")}:${second
 startTimerBtn.addEventListener("click",()=>{
   if(timerId){
     return;
-  }
-  else{
-      timerId =  setInterval(() => {
-      totalSeconds--;
-      updateTimer()
-   }, 1000);
-  }
+}
+else{
+
+    timerId = setInterval(() => {
+
+        totalSeconds--;
+
+        updateTimer();
+        if(totalSeconds <= 0){
+
+            clearInterval(timerId);
+
+            timerId = null;
+
+            weeklyFocus[currentDay] += 25;
+
+            localStorage.setItem(
+                "weeklyFocus",
+                JSON.stringify(weeklyFocus)
+            );
+
+            alert("🎉 Pomodoro Completed!");
+             updateChart();
+
+        }
+
+    },1000);
+
+}
  
 })
 
@@ -719,7 +775,152 @@ for(let i = 1; i <= daysInMonth; i++){
 
 }
 
+const weeklyChart = document.getElementById("weeklyChart");
 
+let weeklyFocus = JSON.parse(localStorage.getItem("weeklyFocus")) || {
+    Mon: 0,
+    Tue: 0,
+    Wed: 0,
+    Thu: 0,
+    Fri: 0,
+    Sat: 0,
+    Sun: 0
+};
+
+const days = [
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat"
+];
+
+
+const currentDay = days[today.getDay()];
+
+const isLightTheme = document.body.classList.contains("light-theme");
+
+const chart = new Chart(weeklyChart, {
+
+    type: "line",
+
+    data: {
+
+        labels: [
+            "Mon",
+            "Tue",
+            "Wed",
+            "Thu",
+            "Fri",
+            "Sat",
+            "Sun"
+        ],
+
+        datasets: [{
+
+            label: "Focus Minutes",
+
+            data: [
+                weeklyFocus.Mon,
+                weeklyFocus.Tue,
+                weeklyFocus.Wed,
+                weeklyFocus.Thu,
+                weeklyFocus.Fri,
+                weeklyFocus.Sat,
+                weeklyFocus.Sun
+            ],
+
+            borderColor: "#3b82f6",
+
+            backgroundColor: "rgba(59,130,246,.2)",
+
+            borderWidth: 3,
+
+            fill: true,
+
+            tension: .4
+
+        }]
+
+    },
+
+    options: {
+
+        responsive: true,
+
+        plugins: {
+
+            legend: {
+
+                labels: {
+
+                    color: isLightTheme ? "#111827" : "#ffffff"
+
+                }
+
+            }
+
+        },
+
+        scales: {
+
+            x: {
+
+                ticks: {
+
+                    color: isLightTheme ? "#111827" : "#ffffff"
+
+                },
+
+                grid: {
+
+                    color: isLightTheme
+                        ? "rgba(0,0,0,.1)"
+                        : "rgba(255,255,255,.08)"
+
+                }
+
+            },
+
+            y: {
+
+                beginAtZero: true,
+
+                ticks: {
+
+                    color: isLightTheme ? "#111827" : "#ffffff"
+
+                },
+
+                grid: {
+
+                    color: isLightTheme
+                        ? "rgba(0,0,0,.1)"
+                        : "rgba(255,255,255,.08)"
+
+                }
+
+            }
+
+        }
+
+    }
+
+});
+
+chart.data.datasets[0].data = [
+    weeklyFocus.Mon,
+    weeklyFocus.Tue,
+    weeklyFocus.Wed,
+    weeklyFocus.Thu,
+    weeklyFocus.Fri,
+    weeklyFocus.Sat,
+    weeklyFocus.Sun
+];
+
+chart.update();
 
 
 

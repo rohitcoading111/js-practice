@@ -3,6 +3,182 @@ body{
     color: white;
     min-height: 100vh;
 }
+
+
+body.light-theme{
+
+    background:#f4f7fb;
+
+    color:#1f2937;
+
+}
+
+
+body.light-theme nav a{
+
+    color:#111827;
+
+}
+
+body.light-theme nav a:hover{
+
+    color:#2563eb;
+
+}
+
+body.light-theme .logo{
+
+    color:#111827;
+
+}
+
+body.light-theme header{
+
+    background:white;
+
+}
+
+nav a{
+
+    color:white;
+
+    text-decoration:none;
+
+    transition:.3s;
+
+}
+
+nav a:hover{
+
+    color:#60a5fa;
+
+}
+
+nav a{
+
+    position:relative;
+
+}
+
+nav a::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    bottom:-5px;
+
+    width:0;
+
+    height:2px;
+
+    background:#3b82f6;
+
+    transition:.3s;
+
+}
+
+nav a:hover::after{
+
+    width:100%;
+
+}
+
+body.light-theme #quoteText,
+body.light-theme #quoteAuthor{
+
+    color:#111827;
+
+}
+
+body.light-theme .quote-icon{
+
+    color:#2563eb;
+
+}
+
+
+
+body.light-theme .hero,
+body.light-theme .stats,
+body.light-theme .planner,
+body.light-theme .weather,
+body.light-theme .pomodoro,
+body.light-theme .quote,
+body.light-theme .goals,
+body.light-theme .calendar,
+body.light-theme .chart,
+body.light-theme .transactions{
+
+    background:white;
+
+    color:#111827;
+
+}
+
+
+body.light-theme h1,
+body.light-theme h2,
+body.light-theme h3,
+body.light-theme h4,
+body.light-theme p,
+body.light-theme span{
+
+    color:#111827;
+
+}
+
+
+
+body.light-theme input,
+body.light-theme select{
+
+    background:#f3f4f6;
+
+    color:black;
+
+    border:1px solid #d1d5db;
+
+}
+
+
+
+body.light-theme .planner-card,
+body.light-theme .goal-item,
+body.light-theme .weather-card{
+
+    background:#eef2ff;
+
+}
+
+
+body.light-theme .calendar-grid div{
+
+    background:#e5e7eb;
+
+}
+
+body.light-theme .calendar-grid .active{
+
+    background:#2563eb;
+
+    color:white;
+
+}
+
+
+#themeBtn{
+
+    cursor:pointer;
+
+    font-size:22px;
+
+    border:none;
+
+    background:transparent;
+
+}
 .dashboard{
     width: 90%;
     margin: 40px auto;
@@ -328,7 +504,7 @@ background:#2563eb;
     background: #2563eb;
 }
 
-/* Responsive */
+
 
 @media(max-width:768px){
 
@@ -442,7 +618,7 @@ margin-bottom:25px;
 
 display:flex;
 align-items:center;
-gap:10px;   /* 👈 Buttons ke beech sirf 10px gap */
+gap:10px;   
 
 }
 
