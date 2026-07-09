@@ -1008,7 +1008,7 @@ grid-template-columns:1fr;
 }
 
 .goal-input input{
-    width:100%;
+    width:98%;
     padding:15px;
     border:none;
     outline:none;
@@ -1075,6 +1075,82 @@ grid-template-columns:1fr;
     cursor:pointer;
 }
 
+
+.goal-item{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:15px;
+
+    background:#2f3b52;
+
+    border-radius:12px;
+
+    margin-top:12px;
+
+}
+
+.goal-actions{
+
+    display:flex;
+
+    gap:10px;
+
+}
+
+.complete-btn,
+.delete-goal-btn{
+
+    width:40px;
+    height:40px;
+
+    border:none;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+    transition:.3s;
+
+}
+
+.complete-btn{
+
+    background:#16a34a;
+    color:white;
+
+}
+
+.complete-btn:hover{
+
+    transform:scale(1.08);
+
+}
+
+.delete-goal-btn{
+
+    background:#dc2626;
+    color:white;
+
+}
+
+.delete-goal-btn:hover{
+
+    transform:scale(1.08);
+
+}
+
+.completed{
+
+    text-decoration:line-through;
+
+    color:#9ca3af;
+
+}
 .calendar{
     margin-top:40px;
     padding:25px;

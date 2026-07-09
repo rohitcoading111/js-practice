@@ -542,8 +542,91 @@ newQuoteBtn.addEventListener("click",()=>{
     fetchQuote()
 })
 
+const addGoalBtn = document.getElementById("addGoalBtn");
+const goalInput = document.getElementById("goalInput");
+const goalList = document.querySelector(".goal-list");
+const progressFill = document.querySelector(".progress-fill");
+const progressText = document.querySelector(".goal-progress p");
 
+let goals = JSON.parse(localStorage.getItem("goals")) || [];
+addGoalBtn.addEventListener("click", () => {
 
+    const goal = goalInput.value.trim();
+
+    if(goal === ""){
+        alert("Please Enter Goal");
+        return;
+    }
+    
+     const goalObj = {
+        id:Date.now()+ Math.random(),
+        text : goal,
+        completed:false,
+     }
+   goals.push(goalObj)
+   localStorage.setItem("goals", JSON.stringify(goals));
+   renderGoals();
+   goalInput.value = "";
+});
+function renderGoals(){
+
+    goalList.innerHTML = "";
+
+    goals.forEach((goal)=>{
+
+        const goalItem = document.createElement("div");
+        const goalText = document.createElement("span");
+        const goalActions = document.createElement("div");
+        const completeBtn = document.createElement("button");
+        const deleteBtn = document.createElement("button");
+        goalItem.classList.add("goal-item");
+        goalActions.classList.add("goal-actions");
+        completeBtn.classList.add("complete-btn");
+        deleteBtn.classList.add("delete-goal-btn");
+        completeBtn.dataset.id = goal.id;
+        deleteBtn.dataset.id = goal.id;
+        goalText.textContent = goal.text;
+
+        deleteBtn.addEventListener("click",()=>{
+           let index =  goals.findIndex((goal)=>{
+             return Number(deleteBtn.dataset.id) === goal.id;
+           })
+           if(index>=0){
+             goals.splice(index,1);
+           }
+           localStorage.setItem("goals", JSON.stringify(goals));
+            renderGoals();
+
+        })
+        
+        
+
+        if(goal.completed){
+
+            goalText.classList.add("completed");
+
+        }
+
+        completeBtn.textContent = "✔";
+
+        deleteBtn.textContent = "🗑";
+
+        goalActions.append(
+            completeBtn,
+            deleteBtn
+        );
+
+        goalItem.append(
+            goalText,
+            goalActions
+        );
+
+        goalList.append(goalItem);
+
+    });
+
+}
+ renderGoals();
 fetchQuote()
 renderTasks();
 renderPlanner();
