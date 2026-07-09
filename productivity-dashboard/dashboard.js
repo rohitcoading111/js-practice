@@ -573,7 +573,6 @@ function renderGoals(){
     goalList.innerHTML = "";
 
     goals.forEach((goal)=>{
-
         const goalItem = document.createElement("div");
         const goalText = document.createElement("span");
         const goalActions = document.createElement("div");
@@ -599,14 +598,23 @@ function renderGoals(){
 
         })
         
-        
+        completeBtn.addEventListener("click",()=>{
+            const goal = goals.find((goal)=>{
+               return Number(completeBtn.dataset.id) === goal.id
+           });
+           goal.completed = !goal.completed
+           
+        localStorage.setItem("goals", JSON.stringify(goals));
+         renderGoals();
+        })
 
         if(goal.completed){
 
-            goalText.classList.add("completed");
+             goalItem.classList.add("completed");
+             completeBtn.textContent = "✅";
+             completeBtn.innerHTML = "✔ Done";
 
         }
-
         completeBtn.textContent = "✔";
 
         deleteBtn.textContent = "🗑";
@@ -626,7 +634,10 @@ function renderGoals(){
     });
 
 }
- renderGoals();
+
+
+
+renderGoals();
 fetchQuote()
 renderTasks();
 renderPlanner();

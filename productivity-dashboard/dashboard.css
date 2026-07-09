@@ -1018,6 +1018,43 @@ grid-template-columns:1fr;
     border:1px solid rgba(255,255,255,.1);
 }
 
+.completed{
+
+    text-decoration: line-through;
+
+    color: #9ca3af;
+
+    opacity: .7;
+
+    transition: .3s;
+
+}
+
+.goal-item.completed{
+
+    background: #1f5135;
+
+    border-left: 5px solid #22c55e;
+
+}
+
+.goal-item.completed .complete-btn{
+
+    background: #22c55e;
+
+}
+
+.goal-item.completed .complete-btn::after{
+
+    content: " ✓";
+
+}
+.complete-btn{
+
+    width: 80px;
+
+}
+
 .goal-input input::placeholder{
     color:#cbd5e1;
 }
