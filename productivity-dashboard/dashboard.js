@@ -478,6 +478,54 @@ const pauseTimerBtn = document.getElementById("pauseTimer");
 const resetTimerBtn = document.getElementById("resetTimer");
 
 
+let totalSeconds = 25*60;
+let timerId = null;
+
+function updateTimer(){
+const minutes = Math.floor(totalSeconds / 60);
+const seconds = totalSeconds % 60;
+
+timerDisplay.textContent = `${minutes.toLocaleString().padStart(2,"0")}:${seconds.toString().padStart(2,"0")}`;
+}
+
+startTimerBtn.addEventListener("click",()=>{
+  if(timerId){
+    return;
+  }
+  else{
+      timerId =  setInterval(() => {
+      totalSeconds--;
+      updateTimer()
+      timerDisplay.textContent = `${minutes}:${seconds}`;
+   }, 1000);
+  }
+ 
+})
+
+pauseTimerBtn.addEventListener("click",()=>{
+   if(timerId){
+     pauseTimerBtn.textContent = "▶ Resume"
+    clearInterval(timerId)
+     timerId = null
+     return;
+   }
+   else{
+     pauseTimerBtn.textContent = "⏸ Pause"
+      timerId =  setInterval(() => {
+      totalSeconds--;
+      updateTimer()
+      timerDisplay.textContent = `${minutes}:${seconds}`;
+   }, 1000);
+   }
+
+})
+
+resetTimerBtn.addEventListener("click",()=>{
+    clearInterval(timerId);
+    timerId = null;
+    totalSeconds = 25 * 60;
+    updateTimer()
+})
 
 renderTasks();
 renderPlanner();
