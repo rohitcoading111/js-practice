@@ -8,6 +8,16 @@
 </head>
 <body>
     <main class="dashboard">
+<div class="background">
+
+    <div class="blob blob1"></div>
+
+    <div class="blob blob2"></div>
+
+    <div class="blob blob3"></div>
+
+</div>
+
 <header class="animate">
 
     <div class="logo">
@@ -16,12 +26,21 @@
 
     <nav>
 
-        <a href="#">Home</a>
-        <a href="#">Tasks</a>
-        <a href="#">Planner</a>
-        <a href="#">Weather</a>
+    <a href="index.html">🏠 Home</a>
 
-    </nav>
+    <a href="todo.html">📝 Tasks</a>
+
+    <a href="planner.html">📅 Planner</a>
+
+    <a href="weather.html">🌤 Weather</a>
+
+    <a href="pomodoro.html">🍅 Pomodoro</a>
+
+    <a href="goals.html">🎯 Goals</a>
+
+    <a href="calendar.html">📈 Analytics</a>
+
+</nav>
 
     <button id="themeBtn">🌙</button>
 
@@ -37,7 +56,11 @@
             Stay focused, stay consistent and make today productive.
         </p>
 
-        <button>Start Your Day</button>
+       <button id="startDayBtn">
+
+    Start Your Day
+
+</button>
 
     </div>
 
@@ -99,226 +122,107 @@
 
     </section>
 
-  
-<section class="todo animate">
+<section class="todo-shortcut animate">
 
-    <div class="todo-header">
+    <div class="todo-shortcut-card">
 
-        <h2>📝 Todo List</h2>
+        <div>
 
-        <button id="addTaskBtn">+ Add Task</button>
+            <h2>📝 Todo List</h2>
 
-    </div>
+            <p>
+                Manage your daily tasks and stay productive.
+            </p>
 
-    <div class="todo-input">
+        </div>
 
-        <input
-            type="text"
-            id="taskInput"
-            placeholder="Enter your task..."
-        >
+        <a href="todo.html" class="todo-open-btn">
 
-            <input
-        type="time"
-        id="taskTime"
-    >
+            Open Todo →
 
-    </div>
+        </a>
 
-    <div class="task-container">
-
-
-    <div class="task-actions">
-
-    </div>
-
-</div>
     </div>
 
 </section>
 
+<section class="planner-shortcut animate">
 
-<section class="planner animate">
+    <div class="planner-shortcut-card">
 
-    <div class="planner-header">
+        <div>
 
-    <h2>📅 Daily Planner</h2>
+            <h2>📅 Daily Planner</h2>
 
-    <div class="planner-btns">
-
-        <button id="savePlan">
-            💾 Save Plan
-        </button>
-
-        <button id="newPlannerRow">
-            ➕ Add Row
-        </button>
-
-    </div>
-
-</div>
-
-   <div class="planner-container">
-
-    <div class="planner-row">
-
-        <input type="time" value="08:00" class="planner-time">
-        <input
-            type="text"
-            class="planner-input"
-            placeholder="🌅 Morning Task">
-
-    </div>
-
-    <div class="planner-row">
-
-        <input type="time" value="11:00" class="planner-time">
-
-        <input
-            type="text"
-            class="planner-input"
-            placeholder="💻 Work / Study">
-
-    </div>
-
-    <div class="planner-row">
-
-        <input type="time" value="14:00" class="planner-time">
-
-        <input
-            type="text"
-            class="planner-input"
-            placeholder="🍽 Lunch / Break">
-
-    </div>
-
-    <div class="planner-row">
-
-        <input type="time" value="17:00" class="planner-time">
-
-        <input
-            type="text"
-            class="planner-input"
-            placeholder="🏃 Evening Task">
-
-    </div>
-
-    <div class="planner-row">
-
-        <input type="time" value="20:00" class="planner-time">
-
-        <input
-            type="text"
-            class="planner-input"
-            placeholder="🌙 Night Task">
-
-    </div>
-
-</div>
-<div class="planner-history">
-
-    <h3>📋 Today's Plans</h3>
-
-    <div class="planner-card-container">
-
-    </div>
-
-</div>
-
-</section>
-
-
-<section class="weather animate">
-
-    <div class="weather-header">
-
-        <h2>🌤 Weather</h2>
-
-        <button id="refreshWeather">Refresh</button>
-
-    </div>
-    <div class="weather-search">
-
-    <input
-        type="text"
-        id="cityInput"
-        placeholder="🔍 Search City...">
-
-    <button id="searchWeather">
-        Search
-    </button>
-
-</div>
-
-    <div class="weather-card">
-
-        <div class="weather-top">
-
-            <h1 id="temperature">28°C</h1>
-
-            <img src="https://cdn-icons-png.flaticon.com/512/869/869869.png"
-                alt="weather">
+            <p>
+                Plan your entire day and manage your schedule efficiently.
+            </p>
 
         </div>
 
-        <div class="weather-info">
+        <a href="planner.html" class="planner-open-btn">
 
-            <h3 id="city">Khatima</h3>
+            Open Planner →
 
-            <p id="condition">Partly Cloudy</p>
-
-        </div>
-
-        <div class="weather-details">
-
-            <div>
-                <span>💧</span>
-                <p>Humidity</p>
-                <h4 id="humidity">65%</h4>
-            </div>
-
-            <div>
-                <span>💨</span>
-                <p>Wind</p>
-                <h4 id="wind">12 km/h</h4>
-            </div>
-
-        </div>
+        </a>
 
     </div>
 
 </section>
 
 
-<section class="pomodoro animate">
+<section class="weather-shortcut animate">
 
-    <div class="pomodoro-header">
+    <div class="weather-shortcut-card">
 
-        <h2>🍅 Pomodoro Timer</h2>
+        <div>
+
+            <h2>🌤 Weather</h2>
+
+            <p>
+
+                Check live weather updates anytime.
+
+            </p>
+
+        </div>
+
+        <a href="weather.html" class="weather-open-btn">
+
+            Open Weather →
+
+        </a>
 
     </div>
 
-    <div class="pomodoro-card">
+</section>
 
-        <h1 id="timerDisplay">
-            25:00
-        </h1>
 
-        <div class="pomodoro-buttons">
+<section class="pomodoro-shortcut animate">
 
-            <button id="startTimer">
-                ▶ Start
-            </button>
+    <div class="pomodoro-shortcut-card">
 
-            <button id="pauseTimer">
-                Pause
-            </button>
+        <div>
 
-            <button id="resetTimer">
-                🔄 Reset
-            </button>
+            <h2>
+
+                🍅 Pomodoro Timer
+
+            </h2>
+
+            <p>
+
+                Stay focused with the Pomodoro Technique.
+
+            </p>
 
         </div>
+
+        <a href="pomodoro.html" class="pomodoro-open-btn">
+
+            Open Timer →
+
+        </a>
 
     </div>
 
@@ -326,124 +230,137 @@
 
 
 
-<section class="quote animate">
+<section class="quote-shortcut animate">
 
-    <div class="quote-header">
+    <div class="quote-shortcut-card">
 
-        <h2>💬 Daily Motivation</h2>
+        <div>
 
-        <button id="newQuote">New Quote</button>
+            <h2>
+
+                💬 Daily Motivation
+
+            </h2>
+
+            <p>
+
+                Read inspiring quotes and stay motivated every day.
+
+            </p>
+
+        </div>
+
+        <a href="quotes.html" class="quote-open-btn">
+
+            Open Quotes →
+
+        </a>
 
     </div>
 
-    <div class="quote-card">
+</section>
 
-        <span class="quote-icon">❝</span>
 
-        <p id="quoteText">
-            Success doesn't come from what you do occasionally. It comes from what you do consistently.
+
+<section class="goals-shortcut animate">
+
+    <div class="goals-shortcut-card">
+
+        <div>
+
+            <h2>
+
+                🎯 Daily Goals
+
+            </h2>
+
+            <p>
+
+                Track your daily goals and monitor your progress.
+
+            </p>
+
+        </div>
+
+        <a href="goals.html" class="goals-open-btn">
+
+            Open Goals →
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<section class="calendar-shortcut animate">
+
+    <div class="calendar-shortcut-card">
+
+        <div>
+
+            <h2>
+
+                📅 Calendar & Analytics
+
+            </h2>
+
+            <p>
+
+                View your monthly calendar and weekly productivity chart.
+
+            </p>
+
+        </div>
+
+        <a
+            href="calendar.html"
+            class="calendar-open-btn">
+
+            Open Calendar →
+
+        </a>
+
+    </div>
+
+</section>
+
+<footer class="footer">
+
+    <div class="footer-content">
+
+        <div class="footer-logo">
+
+            <h3>🚀 Productivity Dashboard</h3>
+
+            <p>
+                Organize your day. Achieve your goals.
+            </p>
+
+        </div>
+
+        <div class="footer-links">
+
+            <a href="index.html">Home</a>
+            <a href="todo.html">Todo</a>
+            <a href="planner.html">Planner</a>
+            <a href="weather.html">Weather</a>
+            <a href="pomodoro.html">Pomodoro</a>
+            <a href="goals.html">Goals</a>
+
+        </div>
+
+    </div>
+
+    <hr>
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 Productivity Dashboard • Made with ❤️ by <strong>Rohit</strong>
         </p>
 
-        <h4 id="quoteAuthor">
-            - Marie Forleo
-        </h4>
-
     </div>
-
-</section>
-
-
-
-<section class="goals animate">
-
-    <div class="goals-header">
-
-        <h2>🎯 Daily Goals</h2>
-
-        <button id="addGoalBtn">+ Add Goal</button>
-
-    </div>
-
-    <div class="goal-input">
-
-        <input
-            type="text"
-            id="goalInput"
-            placeholder="Enter your goal..."
-        >
-
-    </div>
-
-    <div class="goal-progress">
-
-        <div class="progress-bar">
-
-            <div class="progress-fill"></div>
-
-        </div>
-
-        <p>0% Completed</p>
-
-    </div>
-
-    <div class="goal-list">
-
-        <div class="goal-item">
-
-            <span>📖 Learn JavaScript</span>
-
-            <button>✔</button>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<section class="calendar animate">
-
-    <div class="calendar-header">
-
-        <h2>📅 Calendar</h2>
-
-        <button id="currentMonthBtn">July 2026</button>
-    </div>
-
-  <div class="calendar-days">
-
-    <span>Sun</span>
-    <span>Mon</span>
-    <span>Tue</span>
-    <span>Wed</span>
-    <span>Thu</span>
-    <span>Fri</span>
-    <span>Sat</span>
-
-</div>
-
-<div class="calendar-grid" id="calendarGrid">
-
-</div>
-
-</section>
-
-<section class="chart animate">
-
-    <div class="chart-header">
-
-        <h2>📈 Weekly Progress</h2>
-
-    </div>
-
-    <canvas id="weeklyChart"></canvas>
-</section>
-
-<footer >
-
-    <h3>🚀 Productivity Dashboard</h3>
-
-    <p>Made with ❤️ by Rohit</p>
 
 </footer>
 </main>

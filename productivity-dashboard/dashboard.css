@@ -4,6 +4,30 @@ body{
     min-height: 100vh;
 }
 
+body.morning{
+
+    background:linear-gradient(135deg,#87CEEB,#FFF8DC);
+
+}
+
+body.afternoon{
+
+    background:linear-gradient(135deg,#4facfe,#00f2fe);
+
+}
+
+body.evening{
+
+    background:linear-gradient(135deg,#ff9966,#ff5e62);
+
+}
+
+body.night{
+
+    background:linear-gradient(135deg,#0f172a,#312e81);
+
+}
+
 
 body.light-theme{
 
@@ -12,8 +36,309 @@ body.light-theme{
     color:#1f2937;
 
 }
+.background{
 
+    position:fixed;
 
+    inset:0;
+
+    overflow:hidden;
+
+    z-index:-1;
+
+    background:#0f172a;
+
+}
+
+.blob{
+
+    position:absolute;
+
+    width:350px;
+
+    height:350px;
+
+    border-radius:50%;
+
+    filter:blur(90px);
+
+    opacity:.5;
+
+    animation:float 18s ease-in-out infinite alternate;
+
+}
+
+.blob1{
+
+    background:#2563eb;
+
+    top:-100px;
+
+    left:-100px;
+
+}
+
+.blob2{
+
+    background:#9333ea;
+
+    right:-100px;
+
+    top:150px;
+
+    animation-delay:4s;
+
+}
+.blob3{
+
+    background:#14b8a6;
+
+    bottom:-100px;
+
+    left:35%;
+
+    animation-delay:8s;
+
+}
+
+@keyframes float{
+
+    0%{
+
+        transform:
+        translate(0,0)
+        scale(1);
+
+    }
+
+    50%{
+
+        transform:
+        translate(120px,-80px)
+        scale(1.2);
+
+    }
+
+    100%{
+
+        transform:
+        translate(-100px,80px)
+        scale(.9);
+
+    }
+
+}
+
+body.light-theme .background{
+
+    background:#eef4ff;
+
+}
+
+body.light-theme .blob1{
+
+    background:#60a5fa;
+
+}
+
+body.light-theme .blob2{
+
+    background:#c084fc;
+
+}
+
+body.light-theme .blob3{
+
+    background:#5eead4;
+
+}
+
+.priority-badge{
+
+    padding:6px 12px;
+
+    border-radius:20px;
+
+    font-size:12px;
+
+    font-weight:600;
+
+    display:inline-block;
+
+    margin-top:8px;
+
+}
+
+.important{
+
+    background:#ef4444;
+
+    color:white;
+
+}
+
+.not-important{
+
+    background:#22c55e;
+
+    color:white;
+
+}
+.todo{
+
+    margin-top:40px;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(15px);
+
+}
+
+.todo-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+}
+
+.todo-header h2{
+
+    color:white;
+
+}
+
+.todo-header button{
+
+    padding:10px 18px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#3b82f6;
+
+    color:white;
+
+    cursor:pointer;
+
+}
+
+.todo-input{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-bottom:25px;
+
+    flex-wrap:wrap;
+
+}
+
+.todo-input input,
+.todo-input select{
+
+    padding:12px;
+
+    border:none;
+
+    border-radius:10px;
+
+    outline:none;
+
+    background:#334155;
+
+    color:white;
+
+    font-size:15px;
+
+}
+
+#taskInput{
+
+    flex:1;
+
+}
+
+#taskTime{
+
+    width:140px;
+
+}
+
+#priority{
+
+    width:180px;
+
+    cursor:pointer;
+
+}
+
+.task-container{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+body.light-theme .todo-input input,
+body.light-theme .todo-input select{
+
+    background:#f3f4f6;
+
+    color:#111827;
+
+    border:1px solid #d1d5db;
+
+}
+
+body.light-theme .todo-header h2{
+
+    color:#111827;
+
+}
+.priority-badge{
+
+    padding:6px 12px;
+
+    border-radius:20px;
+
+    font-size:12px;
+
+    font-weight:600;
+
+    display:inline-block;
+
+    margin-top:8px;
+
+}
+
+.important{
+
+    background:#ef4444;
+
+    color:white;
+
+}
+
+.not-important{
+
+    background:#22c55e;
+
+    color:white;
+
+}
 body.light-theme nav a{
 
     color:#111827;
@@ -1516,29 +1841,120 @@ height:300px;
 
 }
 
-footer{
+.footer{
 
-margin-top:50px;
+    margin-top:70px;
 
-padding:30px;
+    padding:35px;
 
-text-align:center;
+    border-radius:20px 20px 0 0;
 
-background:rgba(255,255,255,.08);
+    background:rgba(255,255,255,.08);
 
-}
-
-footer h3{
-
-color:white;
-
-margin-bottom:10px;
+    backdrop-filter:blur(15px);
 
 }
 
-footer p{
+.footer-content{
 
-color:#cbd5e1;
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:25px;
+
+}
+
+.footer-logo h3{
+
+    color:white;
+
+    margin-bottom:10px;
+
+}
+
+.footer-logo p{
+
+    color:#cbd5e1;
+
+}
+
+.footer-links{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:18px;
+
+}
+
+.footer-links a{
+
+    color:white;
+
+    text-decoration:none;
+
+    transition:.3s;
+
+}
+
+.footer-links a:hover{
+
+    color:#3b82f6;
+
+}
+
+.footer hr{
+
+    margin:25px 0;
+
+    border:none;
+
+    border-top:1px solid rgba(255,255,255,.15);
+
+}
+
+.footer-bottom{
+
+    text-align:center;
+
+}
+
+.footer-bottom p{
+
+    color:#cbd5e1;
+
+    font-size:14px;
+
+}
+body.light-theme .footer{
+
+    background:white;
+
+}
+
+body.light-theme .footer-logo h3,
+body.light-theme .footer-links a{
+
+    color:#111827;
+
+}
+
+body.light-theme .footer-logo p,
+body.light-theme .footer-bottom p{
+
+    color:#4b5563;
+
+}
+
+body.light-theme .footer hr{
+
+    border-top:1px solid #d1d5db;
 
 }
 
@@ -1784,5 +2200,515 @@ flex-wrap:wrap;
 justify-content:center;
 
 }
+
+}
+
+
+.planner-shortcut{
+
+    margin-top:40px;
+
+}
+
+.planner-shortcut-card{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(15px);
+
+}
+
+.planner-shortcut-card h2{
+
+    color:white;
+
+    margin-bottom:10px;
+
+}
+
+.planner-shortcut-card p{
+
+    color:#cbd5e1;
+
+}
+
+.planner-open-btn{
+
+    text-decoration:none;
+
+    padding:14px 25px;
+
+    background:#3b82f6;
+
+    color:white;
+
+    border-radius:12px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.planner-open-btn:hover{
+
+    background:#2563eb;
+
+    transform:translateY(-3px);
+
+}
+
+body.light-theme .planner-shortcut-card{
+
+    background:white;
+
+}
+
+body.light-theme .planner-shortcut-card h2,
+body.light-theme .planner-shortcut-card p{
+
+    color:#111827;
+
+}
+
+.todo-shortcut{
+
+    margin-top:40px;
+
+}
+
+.todo-shortcut-card{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(15px);
+
+    transition:.3s;
+
+}
+
+.todo-shortcut-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.todo-shortcut-card h2{
+
+    color:white;
+
+    margin-bottom:10px;
+
+}
+
+.todo-shortcut-card p{
+
+    color:#cbd5e1;
+
+}
+
+.todo-open-btn{
+
+    text-decoration:none;
+
+    padding:14px 25px;
+
+    background:#3b82f6;
+
+    color:white;
+
+    border-radius:12px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.todo-open-btn:hover{
+
+    background:#2563eb;
+
+    transform:translateY(-3px);
+
+}
+body.light-theme .todo-shortcut-card{
+
+    background:white;
+
+}
+
+body.light-theme .todo-shortcut-card h2,
+body.light-theme .todo-shortcut-card p{
+
+    color:#111827;
+
+}
+
+.weather-shortcut{
+
+    margin-top:40px;
+
+}
+
+.weather-shortcut-card{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(15px);
+
+    transition:.3s;
+
+}
+
+.weather-shortcut-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.weather-shortcut-card h2{
+
+    color:white;
+
+    margin-bottom:10px;
+
+}
+
+.weather-shortcut-card p{
+
+    color:#cbd5e1;
+
+}
+
+.weather-open-btn{
+
+    text-decoration:none;
+
+    padding:14px 25px;
+
+    background:#3b82f6;
+
+    color:white;
+
+    border-radius:12px;
+
+    font-weight:600;
+
+}
+
+.weather-open-btn:hover{
+
+    background:#2563eb;
+
+}
+
+.pomodoro-shortcut{
+
+    margin-top:40px;
+
+}
+
+.pomodoro-shortcut-card{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(15px);
+
+    transition:.3s;
+
+}
+
+.pomodoro-shortcut-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.pomodoro-shortcut-card h2{
+
+    color:white;
+
+    margin-bottom:10px;
+
+}
+
+.pomodoro-shortcut-card p{
+
+    color:#cbd5e1;
+
+}
+
+.pomodoro-open-btn{
+
+    text-decoration:none;
+
+    padding:14px 25px;
+
+    border-radius:12px;
+
+    background:#ef4444;
+
+    color:white;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.pomodoro-open-btn:hover{
+
+    background:#dc2626;
+
+}
+
+.quote-shortcut{
+
+    margin-top:40px;
+
+}
+
+.quote-shortcut-card{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(15px);
+
+    transition:.3s;
+
+}
+
+.quote-shortcut-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.quote-shortcut-card h2{
+
+    color:white;
+
+    margin-bottom:10px;
+
+}
+
+.quote-shortcut-card p{
+
+    color:#cbd5e1;
+
+}
+
+.quote-open-btn{
+
+    text-decoration:none;
+
+    padding:14px 25px;
+
+    border-radius:12px;
+
+    background:#8b5cf6;
+
+    color:white;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.quote-open-btn:hover{
+
+    background:#7c3aed;
+
+}
+
+.goals-shortcut{
+
+    margin-top:40px;
+
+}
+
+.goals-shortcut-card{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(15px);
+
+    transition:.3s;
+
+}
+
+.goals-shortcut-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.goals-shortcut-card h2{
+
+    color:white;
+
+    margin-bottom:10px;
+
+}
+
+.goals-shortcut-card p{
+
+    color:#cbd5e1;
+
+}
+
+.goals-open-btn{
+
+    text-decoration:none;
+
+    padding:14px 25px;
+
+    border-radius:12px;
+
+    background:#22c55e;
+
+    color:white;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.goals-open-btn:hover{
+
+    background:#16a34a;
+
+}
+
+.calendar-shortcut{
+
+    margin-top:40px;
+
+}
+
+.calendar-shortcut-card{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(15px);
+
+    transition:.3s;
+
+}
+
+.calendar-shortcut-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.calendar-shortcut-card h2{
+
+    color:white;
+
+    margin-bottom:10px;
+
+}
+
+.calendar-shortcut-card p{
+
+    color:#cbd5e1;
+
+}
+
+.calendar-open-btn{
+
+    text-decoration:none;
+
+    padding:14px 25px;
+
+    border-radius:12px;
+
+    background:#f59e0b;
+
+    color:white;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.calendar-open-btn:hover{
+
+    background:#d97706;
 
 }

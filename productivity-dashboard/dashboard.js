@@ -1,5 +1,6 @@
 function animation(){
 const cards = document.querySelectorAll(".animate");
+const startDayBtn = document.getElementById("startDayBtn");
 
 window.addEventListener("load", () => {
     cards.forEach((card, index) => {
@@ -9,6 +10,31 @@ window.addEventListener("load", () => {
     });
 });
 
+if(startDayBtn){
+
+    startDayBtn.addEventListener("click",()=>{
+
+        window.location.href = "todo.html";
+
+    });
+
+}
+
+if(startDayBtn){
+
+    startDayBtn.addEventListener("click",()=>{
+
+        startDayBtn.textContent = "Loading...";
+
+        setTimeout(()=>{
+
+            window.location.href = "todo.html";
+
+        },500);
+
+    });
+
+}
 const buttons = document.querySelectorAll("button");
 
 buttons.forEach(btn => {
@@ -25,6 +51,7 @@ buttons.forEach(btn => {
 
     });
 });
+}
 
 const header = document.querySelector("header");
 
@@ -39,17 +66,19 @@ window.addEventListener("scroll", () => {
 
 });
 
-document.addEventListener("mousemove", (e) => {
+document.addEventListener("mousemove",(e)=>{
 
     const hero = document.querySelector(".hero");
 
-    let x = (window.innerWidth / 2 - e.pageX) / 35;
-    let y = (window.innerHeight / 2 - e.pageY) / 35;
+    if(!hero) return;
 
-    hero.style.transform = `rotateY(${x}deg) rotateX(${-y}deg)`;
+    let x = (window.innerWidth/2-e.pageX)/35;
+    let y = (window.innerHeight/2-e.pageY)/35;
+
+    hero.style.transform =
+    `rotateY(${x}deg) rotateX(${-y}deg)`;
 
 });
-}
 
 animation();
 
@@ -60,36 +89,48 @@ let editTaskId = null;
    const rows = document.querySelectorAll(".planner-row")
 function updateDateTime(){
 
+    if(!time || !date || !greeting){
+        return;
+    }
+
     const now = new Date();
 
-   
     time.textContent = now.toLocaleTimeString([],{
         hour:"2-digit",
         minute:"2-digit"
     });
 
-   
     date.textContent = now.toLocaleDateString("en-IN",{
         weekday:"long",
         day:"numeric",
         month:"long",
         year:"numeric"
     });
-
-    let hour = now.getHours();
-
-    if(hour < 12){
-        greeting.textContent = "Good Morning, Rohit 👋";
-    }
-    else if(hour < 18){
-        greeting.textContent = "Good Afternoon, Rohit ☀️";
-    }
-    else{
-        greeting.textContent = "Good Evening, Rohit 🌙";
-    }
-
 }
 updateDateTime();
+
+const hour = new Date().getHours();
+
+if(hour >= 5 && hour < 11){
+
+    document.body.classList.add("morning");
+
+}
+else if(hour >= 11 && hour < 16){
+
+    document.body.classList.add("afternoon");
+
+}
+else if(hour >= 16 && hour < 19){
+
+    document.body.classList.add("evening");
+
+}
+else{
+
+    document.body.classList.add("night");
+
+}
 setInterval(updateDateTime,1000);
 const themeBtn = document.getElementById("themeBtn");
 
@@ -136,8 +177,18 @@ const taskInput = document.getElementById("taskInput");
 const addTaskBtn = document.getElementById("addTaskBtn");
 const taskContainer = document.querySelector(".task-container");
 const taskTime = document.getElementById("taskTime");
+const priority = document.getElementById("priority");
 
 
+if(priority){
+
+    priority.addEventListener("change",()=>{
+
+    });
+
+}
+
+if(addTaskBtn){
 addTaskBtn.addEventListener("click",()=>{
     const task = taskInput.value.trim();
     const time = taskTime.value.trim();
@@ -176,6 +227,7 @@ if (task === "" ){
     time,
     id,
     completeBtns:false,
+    priority: priority.value, 
    }
    tasks.push(taskObj);
    localStorage.setItem("tasks",JSON.stringify(tasks));
@@ -187,18 +239,34 @@ if (task === "" ){
 }
 
 });
-
+}
 function addTask(){
     const task = taskInput.value.trim();
     updateDashboard()
 }
-
 function renderTasks(){
      taskContainer.innerHTML = "";
      tasks.forEach((task)=>{
      const taskActions = document.createElement("div");
      taskActions.classList.add("task-actions");
+    const priorityText = document.createElement("span");
 
+priorityText.classList.add("priority-badge");
+
+if(task.priority === "important"){
+
+    priorityText.textContent = "⭐ Important";
+
+    priorityText.classList.add("important");
+
+}
+else{
+
+    priorityText.textContent = "📌 Not Important";
+
+    priorityText.classList.add("not-important");
+
+}
 const completeBtn = document.createElement("button");
 completeBtn.classList.add("complete-btn");
 completeBtn.textContent = "✔";
@@ -255,7 +323,8 @@ if(task.completeBtns){
 taskActions.append(
     completeBtn,
     editBtn,
-    deleteBtn
+    deleteBtn,
+    priorityText,
 );
 
      const h3 = document.createElement("h3");
@@ -302,7 +371,8 @@ const plannerHistory = document.querySelector(".planner-history");
 const planerData = JSON.parse(localStorage.getItem("planerData")) || [];
 
 let editPlanId = null;
-savePlanBtn.addEventListener("click",()=>{
+if(savePlanBtn){
+    savePlanBtn.addEventListener("click",()=>{
   if(editPlanId !== null){
     const rows = document.querySelectorAll(".planner-row");
     const updatedPlan = planerData.find((plan) => {
@@ -353,6 +423,7 @@ else{
     });
 }
 })
+}
 
 function renderPlanner(){
        const rows = document.querySelectorAll(".planner-row")
@@ -427,11 +498,13 @@ const cityInput = document.getElementById("cityInput");
 
 
 const searchWeatherBtn = document.getElementById("searchWeather");
-searchWeatherBtn.addEventListener("click",()=>{
+if(searchWeatherBtn){
+    searchWeatherBtn.addEventListener("click",()=>{
    const cityName = cityInput.value.trim();
    searchCity(cityName);
    cityInput.value = ""
 });
+}
 
 
 async function searchCity(cityName){
@@ -487,7 +560,8 @@ const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitu
 
 }
 
-refreshWeatherBtn.addEventListener("click", () => {
+if(refreshWeatherBtn){
+    refreshWeatherBtn.addEventListener("click", () => {
 
     const lastCity = localStorage.getItem("lastCity");
 
@@ -496,6 +570,7 @@ refreshWeatherBtn.addEventListener("click", () => {
     }
 
 });
+}
 
 const lastCity = localStorage.getItem("lastCity");
 
@@ -522,7 +597,8 @@ const seconds = totalSeconds % 60;
 timerDisplay.textContent = `${minutes.toLocaleString().padStart(2,"0")}:${seconds.toString().padStart(2,"0")}`;
 }
 
-startTimerBtn.addEventListener("click",()=>{
+if(startTimerBtn){
+    startTimerBtn.addEventListener("click",()=>{
   if(timerId){
     return;
 }
@@ -556,8 +632,10 @@ else{
 }
  
 })
+}
 
-pauseTimerBtn.addEventListener("click",()=>{
+if(pauseTimerBtn){
+    pauseTimerBtn.addEventListener("click",()=>{
    if(timerId){
      pauseTimerBtn.textContent = "▶ Resume"
      clearInterval(timerId)
@@ -575,12 +653,15 @@ pauseTimerBtn.addEventListener("click",()=>{
 
 })
 
-resetTimerBtn.addEventListener("click",()=>{
+}
+if(resetTimerBtn){
+    resetTimerBtn.addEventListener("click",()=>{
     clearInterval(timerId);
     timerId = null;
     totalSeconds = 25 * 60;
     updateTimer()
 })
+}
 
 const quoteText = document.getElementById("quoteText");
 const quoteAuthor = document.getElementById("quoteAuthor");
@@ -594,10 +675,12 @@ async function fetchQuote(){
       quoteAuthor.textContent = data.author;
 }
 
-newQuoteBtn.addEventListener("click",()=>{
+if(newQuoteBtn){
+    newQuoteBtn.addEventListener("click",()=>{
     fetchQuote()
 })
 
+}
 const addGoalBtn = document.getElementById("addGoalBtn");
 const goalInput = document.getElementById("goalInput");
 const goalList = document.querySelector(".goal-list");
@@ -605,7 +688,8 @@ const progressFill = document.querySelector(".progress-fill");
 const progressText = document.querySelector(".goal-progress p");
 
 let goals = JSON.parse(localStorage.getItem("goals")) || [];
-addGoalBtn.addEventListener("click", () => {
+if(addGoalBtn){
+    addGoalBtn.addEventListener("click", () => {
 
     const goal = goalInput.value.trim();
 
@@ -624,6 +708,7 @@ addGoalBtn.addEventListener("click", () => {
    renderGoals();
    goalInput.value = "";
 });
+}
 function renderGoals(){
 
     goalList.innerHTML = "";
@@ -774,154 +859,6 @@ for(let i = 1; i <= daysInMonth; i++){
     calendarGrid.append(day);
 
 }
-
-const weeklyChart = document.getElementById("weeklyChart");
-
-let weeklyFocus = JSON.parse(localStorage.getItem("weeklyFocus")) || {
-    Mon: 0,
-    Tue: 0,
-    Wed: 0,
-    Thu: 0,
-    Fri: 0,
-    Sat: 0,
-    Sun: 0
-};
-
-const days = [
-    "Sun",
-    "Mon",
-    "Tue",
-    "Wed",
-    "Thu",
-    "Fri",
-    "Sat"
-];
-
-
-const currentDay = days[today.getDay()];
-
-const isLightTheme = document.body.classList.contains("light-theme");
-
-const chart = new Chart(weeklyChart, {
-
-    type: "line",
-
-    data: {
-
-        labels: [
-            "Mon",
-            "Tue",
-            "Wed",
-            "Thu",
-            "Fri",
-            "Sat",
-            "Sun"
-        ],
-
-        datasets: [{
-
-            label: "Focus Minutes",
-
-            data: [
-                weeklyFocus.Mon,
-                weeklyFocus.Tue,
-                weeklyFocus.Wed,
-                weeklyFocus.Thu,
-                weeklyFocus.Fri,
-                weeklyFocus.Sat,
-                weeklyFocus.Sun
-            ],
-
-            borderColor: "#3b82f6",
-
-            backgroundColor: "rgba(59,130,246,.2)",
-
-            borderWidth: 3,
-
-            fill: true,
-
-            tension: .4
-
-        }]
-
-    },
-
-    options: {
-
-        responsive: true,
-
-        plugins: {
-
-            legend: {
-
-                labels: {
-
-                    color: isLightTheme ? "#111827" : "#ffffff"
-
-                }
-
-            }
-
-        },
-
-        scales: {
-
-            x: {
-
-                ticks: {
-
-                    color: isLightTheme ? "#111827" : "#ffffff"
-
-                },
-
-                grid: {
-
-                    color: isLightTheme
-                        ? "rgba(0,0,0,.1)"
-                        : "rgba(255,255,255,.08)"
-
-                }
-
-            },
-
-            y: {
-
-                beginAtZero: true,
-
-                ticks: {
-
-                    color: isLightTheme ? "#111827" : "#ffffff"
-
-                },
-
-                grid: {
-
-                    color: isLightTheme
-                        ? "rgba(0,0,0,.1)"
-                        : "rgba(255,255,255,.08)"
-
-                }
-
-            }
-
-        }
-
-    }
-
-});
-
-chart.data.datasets[0].data = [
-    weeklyFocus.Mon,
-    weeklyFocus.Tue,
-    weeklyFocus.Wed,
-    weeklyFocus.Thu,
-    weeklyFocus.Fri,
-    weeklyFocus.Sat,
-    weeklyFocus.Sun
-];
-
-chart.update();
-
 
 
 renderGoals();

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Planner | Productivity Dashboard</title>
+
+    <link rel="stylesheet" href="dashboard.css">
+
+</head>
+
+<body>
+
+<div class="background">
+
+    <div class="blob blob1"></div>
+
+    <div class="blob blob2"></div>
+
+    <div class="blob blob3"></div>
+
+</div>
+
+<header class="animate">
+
+    <div class="logo">
+        🚀 Productivity Dashboard
+    </div>
+
+    <nav>
+
+        <a href="index.html">Home</a>
+        <a href="todo.html">Tasks</a>
+        <a href="planner.html">Planner</a>
+        <a href="weather.html">Weather</a>
+
+    </nav>
+
+    <button id="themeBtn">🌙</button>
+
+</header>
+
+<main class="dashboard">
+
+<section class="planner animate">
+
+    <div class="planner-header">
+
+        <h2>📅 Daily Planner</h2>
+
+        <div class="planner-btns">
+
+            <button id="savePlan">
+                💾 Save Plan
+            </button>
+
+            <button id="newPlannerRow">
+                ➕ Add Row
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="planner-container">
+
+        <div class="planner-row">
+
+            <input type="time" value="08:00" class="planner-time">
+
+            <input
+                type="text"
+                class="planner-input"
+                placeholder="🌅 Morning Task">
+
+        </div>
+
+        <div class="planner-row">
+
+            <input type="time" value="11:00" class="planner-time">
+
+            <input
+                type="text"
+                class="planner-input"
+                placeholder="💻 Work / Study">
+
+        </div>
+
+        <div class="planner-row">
+
+            <input type="time" value="14:00" class="planner-time">
+
+            <input
+                type="text"
+                class="planner-input"
+                placeholder="🍽 Lunch / Break">
+
+        </div>
+
+        <div class="planner-row">
+
+            <input type="time" value="17:00" class="planner-time">
+
+            <input
+                type="text"
+                class="planner-input"
+                placeholder="🏃 Evening Task">
+
+        </div>
+
+        <div class="planner-row">
+
+            <input type="time" value="20:00" class="planner-time">
+
+            <input
+                type="text"
+                class="planner-input"
+                placeholder="🌙 Night Task">
+
+        </div>
+
+    </div>
+
+    <div class="planner-history">
+
+        <h3>📋 Today's Plans</h3>
+
+        <div class="planner-card-container">
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+<footer class="footer">
+
+    <div class="footer-content">
+
+        <div class="footer-logo">
+
+            <h3>🚀 Productivity Dashboard</h3>
+
+            <p>
+                Organize your day. Achieve your goals.
+            </p>
+
+        </div>
+
+        <div class="footer-links">
+
+            <a href="index.html">Home</a>
+            <a href="todo.html">Todo</a>
+            <a href="planner.html">Planner</a>
+            <a href="weather.html">Weather</a>
+            <a href="pomodoro.html">Pomodoro</a>
+            <a href="goals.html">Goals</a>
+
+        </div>
+
+    </div>
+
+    <hr>
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 Productivity Dashboard • Made with ❤️ by <strong>Rohit</strong>
+        </p>
+
+    </div>
+
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="dashboard.js"></script>
+
+</body>
+
+</html>
